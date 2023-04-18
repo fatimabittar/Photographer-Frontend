@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundServices from "../images/180534.jpg";
+import backgroundServices from "../images/ba.jpg";
 import { Parallax } from "react-parallax";
 import icon1 from "../images/icon-1.svg";
 import icon2 from "../images/icon-2.svg";
@@ -9,7 +9,7 @@ import icon5 from "../images/icon-5.svg";
 import icon6 from "../images/icon-6.svg";
 import { ServicesFeature } from "../components/ServicesFeature";
 
-export const ServicesBackground = () => {
+export const  ServicesBackground = () => {
   return (
     <div>
       <Parallax
