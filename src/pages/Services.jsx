@@ -55,7 +55,9 @@ export const Services = () => {
         </div>
         <div className="sideServ">
           <div className="">
-            <SideImage imgSrc={sidimg} />
+            {side_image.map((item) => (
+              <SideImage imgSrc={item.side_image} />
+            ))}
           </div>
           <div className="services-offers">
             {services
