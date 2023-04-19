@@ -6,7 +6,8 @@ import { Home } from "./pages/Home";
 import { Gallery } from "./pages/Gallery";
 import { About } from "./pages/About";
 import { Services } from "./pages/Services";
-import { Shop } from "./pages/Shop";
+import Shop from "./pages/Shop";
+import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
 
 function App() {
@@ -18,10 +19,11 @@ function App() {
         <Route exact path="/gallery" element={<Gallery />} />
         <Route exact path="/services" element={<Services />} />
         <Route exact path="/shop" element={<Shop />} />
+        <Route path="shop/:itemID" element={<ItemDetails />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
