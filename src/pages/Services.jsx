@@ -55,7 +55,7 @@ export const Services = () => {
         <div className="sideServ">
           <div className="">
             {side_images
-              .filter((img) => img.section === "services")
+              .filter((img) => img.page === "services" && img.section === 1)
               .map((img) => (
                 <SideImage key={img.id} imgSrc={img.image} />
               ))}
