@@ -5,6 +5,7 @@ import ContactForm from "./Component/ContactForm/ContactForm";
 function App() {
   return (
     <div className="App">
+  <ContactForm />
   <About />
     </div>
   );

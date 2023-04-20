@@ -3,7 +3,7 @@ import CardSectionOne from './CardSectionOne'
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const url = "http://localhost:8000/api/about/";
+const url = "http://localhost:5000/api/about/";
 
 
 function SectionOne() {

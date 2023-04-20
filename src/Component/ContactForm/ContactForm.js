@@ -1,69 +1,62 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
 
-  const { name, email, message } = formData;
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const url = "http://localhost:5000/api/contact";
 
-  const handleSubmit = async e => {
+
+function ContactForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus('Sending...');
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-
-      const { data } = await axios.post('/api/contact', formData, config);
-
-      console.log(data);
-      // show success message to the user
+      await axios.post(`${url}`, { name, email, message });
+      setStatus('Sent!');
+      setName('');
+      setEmail('');
+      setMessage('');
     } catch (error) {
-      console.log(error.response.data);
-      // show error message to the user
+      // console.log(error);
+      setStatus('Failed to send.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="message">Message</label>
-        <textarea
-          name="message"
-          value={message}
-          onChange={handleChange}
-        ></textarea>
-      </div>
+      <label htmlFor="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <label htmlFor="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <label htmlFor="message">Message:</label>
+      <textarea
+        id="message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        required
+      ></textarea>
       <button type="submit">Submit</button>
+      <p>{status}</p>
     </form>
   );
-};
+}
 
-export default ContactForm;
+
+export default  ContactForm
