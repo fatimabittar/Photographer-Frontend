@@ -68,6 +68,7 @@ export const Services = () => {
                   icon={faCamera}
                   title={service.title}
                   description={service.description}
+                  
                 />
               ))}
           </div>
