@@ -12,7 +12,7 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 export const Services = () => {
   const [services, setServices] = useState([]);
-  const [side_image, setSide_image] = useState();
+  const [side_images, setSide_images] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,10 +24,9 @@ export const Services = () => {
   useEffect(() => {
     axios
       .get(`${API_URL}/images`)
-      .then((res) => setSide_image(res.data))
+      .then((res) => setSide_images(res.data))
       .catch((err) => console.log(err));
   }, []);
-
   return (
     <div className="services">
       <ServicesBackground />
@@ -55,7 +54,11 @@ export const Services = () => {
         </div>
         <div className="sideServ">
           <div className="">
-            <SideImage imgSrc={sidimg} />
+            {side_images
+              .filter((img) => img.section === "services")
+              .map((img) => (
+                <SideImage key={img.id} imgSrc={img.image} />
+              ))}
           </div>
           <div className="services-offers">
             {services
