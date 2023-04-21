@@ -6,7 +6,7 @@ import "../styles/Services.css";
 import { ServicesBackground } from "../components/ServicesBackground";
 import { ServicesPricingPlan } from "../components/ServicesPricingPlan";
 import { SideImage } from "../components/SideImage";
-import sidimg from "../images/sideImage.jpg";
+// import sidimg from "../images/sideImage.jpg";
 import { ServicesStudentsOffer } from "../components/ServicesStudentsOffer";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
