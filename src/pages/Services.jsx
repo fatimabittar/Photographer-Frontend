@@ -57,7 +57,11 @@ export const Services = () => {
             {side_images
               .filter((img) => img.page === "services" && img.section === 1)
               .map((img) => (
-                <SideImage key={img.id} imgSrc={img.image} />
+                <SideImage
+                  key={img.id}
+                  imgSrc={img.image}
+                  className="side-image"
+                />
               ))}
           </div>
           <div className="services-offers">
@@ -68,7 +72,6 @@ export const Services = () => {
                   icon={faCamera}
                   title={service.title}
                   description={service.description}
-                  
                 />
               ))}
           </div>
