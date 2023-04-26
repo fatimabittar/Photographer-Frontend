@@ -1,8 +1,9 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: black;
     font-size: 24px;
+    /* opacity: 0.5; */
+    /* background-color: black; */
 }
 
 .navigation-bar{

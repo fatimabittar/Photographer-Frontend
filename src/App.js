@@ -8,7 +8,7 @@ import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
-import About from "./Component/About/About"
+import About from "./components/About/About"
 function App() {
   return (
     <BrowserRouter>
