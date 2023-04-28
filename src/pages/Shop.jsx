@@ -5,7 +5,8 @@ import image2 from "../images/paris.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import AboutHeader from "../components/About/AboutHeader/AboutHeader";
+import ba from '../components/About/AboutHeader/ba.jpg'
 
 const Shop = () => {
   const [Items, setItems] = useState([]);
@@ -38,9 +39,7 @@ const Shop = () => {
   const lenseFilteredItems = Items.filter((item) => item.category === "lense");
   return (
     <>
-      <header>
-        <img src={image1} alt="background-image" />
-      </header>
+     <AboutHeader backgroundImage={ba}/>
 
       <h1 className="titles">BOOOM</h1>
       <div className="boom">

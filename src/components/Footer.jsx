@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <div className="footer">
       <p>
-        Copyright &copy; 2023 by Ahmad,Sarah,Fatima,Nour. All Rights Reserved.
+        Copyright &copy; 2023 by Ahmad, Sarah, Fatima, Nour. All Rights Reserved.
       </p>
       <div className="icons">
         <InstagramIcon />

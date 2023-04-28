@@ -9,10 +9,11 @@ import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
 import About from "./components/About/About"
+import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+   
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/gallery" element={<Gallery />} />

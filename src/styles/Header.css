@@ -2,15 +2,18 @@
     display: flex;
     justify-content: space-between;
     font-size: 24px;
+    
     /* opacity: 0.5; */
     /* background-color: black; */
 }
 
 .navigation-bar{
     display: flex;
+    margin-left: 900px;
     justify-content: space-evenly;
     width: 50%;
-    margin: auto 0;
+    margin-top: 20px;
+    gap: 0px;
 }
 
 .logo {
