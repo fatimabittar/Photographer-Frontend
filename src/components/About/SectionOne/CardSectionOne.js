@@ -18,7 +18,7 @@ function CardSectionOne(props) {
     </div>
     <div className='about--section-one-column-two'>
       <div className='about--section-one-image-backgroud'>
-      <img src={dots} alt="image" className='about-section-one-image'/>
+      <img  src={`data:image/jpeg;base64,${props.imageSrc}`} alt="image" className='about-section-one-image'/>
       <div className='transparent-dots'></div>
       </div>
     </div>
