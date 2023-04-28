@@ -5,21 +5,25 @@ export const ServicesPricingPlan = ({
   price,
   description,
   imageSrc,
+  editable,
 }) => {
   return (
     <div className="services-pricing-plan">
-      <div className="pricing-background">
-        <img
-          src={`data:image/jpeg;base64,${imageSrc}`}
-          alt="imgSrc"
-          className="img-pricing"
-        />
+      <div className="services-pricing-plan-content">
+        <div className="pricing-background">
+          <img
+            src={`data:image/jpeg;base64,${imageSrc}`}
+            alt="imgSrc"
+            className="img-pricing"
+          />
+        </div>
+        <div className="pricing-body">
+          <h2>{title}</h2>
+          <h1>{price}</h1>
+          <p>{description}</p>
+        </div>
       </div>
-      <div className="pricing-body">
-        <h2>{title}</h2>
-        <h1>{price}</h1>
-        <p>{description}</p>
-      </div>
+      {editable && <button className="button-edit">Edit</button>}
     </div>
   );
 };
