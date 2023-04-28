@@ -1,5 +1,6 @@
 import React from "react";
 import ScrollUpButton from "react-scroll-up-button";
+import "../styles/Footer.css";
 import { BehanceIcon } from "./BehanceIcon";
 import { FacebookIcon } from "./FacebookIcon";
 import { InstagramIcon } from "./InstagramIcon";
@@ -16,10 +17,14 @@ export const Footer = () => {
         <InstagramIcon />
         <LinkdinIcon />
         <TwitterIcon />
-        <BehanceIcon/>
+        <BehanceIcon />
         <FacebookIcon />
       </div>
-      <ScrollUpButton className="scoll" style={{width: 40,  height:30 }} ToggledStyle={{right: 15}}/>
+      <ScrollUpButton
+        className="scoll"
+        style={{ width: 40, height: 30 }}
+        ToggledStyle={{ right: 15 }}
+      />
     </div>
   );
 };
