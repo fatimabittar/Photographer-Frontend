@@ -16,7 +16,7 @@ import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className="app">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/gallery" element={<Gallery />} />

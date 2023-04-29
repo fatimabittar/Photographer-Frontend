@@ -14,10 +14,11 @@ import { Header } from "../../Header";
 
 // export default AboutHeader
 
-function AboutHeader({ backgroundImage }) {
+function AboutHeader({ backgroundImage, minHeight = "500px" }) {
   const style = {
+    backgroundColor: "black",
     backgroundImage: `url(${backgroundImage})`,
-    minHeight: "500px",
+    minHeight,
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

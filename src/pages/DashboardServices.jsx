@@ -13,14 +13,13 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 export const DashboardServices = () => {
   const [services, setServices] = useState([]);
   const [side_images, setSide_images] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/services`)
-      .then((res) => setServices(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${API_URL}/services`)
+  //     .then((res) => setServices(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   useEffect(() => {
     axios
@@ -29,12 +28,25 @@ export const DashboardServices = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
+  const getServices = () => {
     axios
-      .put(`${API_URL}/services`)
-      .then((res) => setSide_images(res.data))
+      .get(`${API_URL}/services`)
+      .then((res) => setServices(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  useEffect(() => getServices(), []);
+
+  const onEditServicePlanning = async (id, formData) => {
+    await axios({
+      url: `${API_URL}/services/${id}`,
+      data: formData,
+      method: "put",
+    })
+      .then((res) => getServices())
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="services">
       <ServicesBackground />
@@ -48,11 +60,12 @@ export const DashboardServices = () => {
             .filter((service) => service.status === "customer")
             .map((service) => (
               <ServicesPricingPlan
+                id={service.id}
                 title={service.title}
                 price={service.price}
                 description={service.description}
                 imageSrc={service.image}
-                editable
+                onEdit={onEditServicePlanning}
               />
             ))}
         </div>

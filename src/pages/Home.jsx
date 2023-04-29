@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import { ImageDivider } from "../components/ImageDivider.jsx";
 import "../styles/Home.css";
+import AboutHeader from "../components/About/AboutHeader/AboutHeader";
 
 export const Home = () => {
   const [side_images, setSide_images] = useState([]);
@@ -56,11 +57,12 @@ export const Home = () => {
   return (
     <div className="home">
       <div className="home-one">
-        <img
+      <AboutHeader backgroundImage={photographerBckgrnd} minHeight={'90vh'}/>
+        {/* <img
           src={photographerBckgrnd}
           alt="backgroundImage"
           className="HomeBackgrnd"
-        />
+        /> */}
       </div>
       <div className="home-two">
         <section className="section-1">
