@@ -1,25 +1,24 @@
 import React from "react";
-import AboutHeader from "../components/About/AboutHeader/AboutHeader";
-import ba from "../components/About/AboutHeader/ba.jpg";
-import "../styles/Contact.css";
+import { BsTelephone } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
+import { SlLocationPin } from "react-icons/sl";
+
+import ContactCard from "../components/ContactCard";
+import '../styles/Contact.css'
 
 export const Contact = () => {
   return (
-    <div>
-      <AboutHeader backgroundImage={ba} />
-      <div className="contact-container">
-        <div className="contact-details">
-          <h3>Contact Details</h3>
+    <div className="contact-page">
+      <div className="contact-details">
+        
+        <ContactCard icon={ <BsTelephone style={{height:28, width:28}}/>} title="call us" address="00 000 00 000 000"/>
+        <ContactCard icon={ <HiOutlineMail style={{height:28, width:28}}/>} title="send us an email" address="info@jaykhawand.com"/>
+        <ContactCard icon={ <SlLocationPin style={{height:28, width:28}}/>} title="visit our office" address="Jay Khawand Studios, Sinn el Fil, Jisr el Wati, Fattal street Younes building, 1st floor Beirut"/>
 
-          <div className="contact-card">
-            <div className="contact-icon"></div>
-            <div>
-              <h5>Call us</h5>
-              <p>phone nuber</p>
-            </div>
-          </div>
-        </div>
-        <div className="contact-form"></div>
+
+      </div>
+      <div className="contact-form">
+        
       </div>
     </div>
   );
