@@ -26,25 +26,28 @@ export const Header = () => {
     }
   };
 
+  const adminLoggedIn = true;
+  const homePath = adminLoggedIn ? "/dashboard" : "";
+
   return (
     <div className="header">
-      <NavLink to="/" style={navigationStyle}>
+      <NavLink to={`${homePath}`} style={navigationStyle}>
         <img className="logo" src={logo} alt="JAY KHAWAND" />
       </NavLink>
       <div className="navigation-bar">
-        <NavLink to="/gallery" style={navigationStyle}>
+        <NavLink to={`${homePath}/gallery`} style={navigationStyle}>
           Gallery
         </NavLink>
-        <NavLink to="/services" style={navigationStyle}>
+        <NavLink to={`${homePath}/services`} style={navigationStyle}>
           Services
         </NavLink>
-        <NavLink to="/shop" style={navigationStyle}>
+        <NavLink to={`${homePath}/shop`} style={navigationStyle}>
           Shop
         </NavLink>
-        <NavLink to="/about" style={navigationStyle}>
+        <NavLink to={`${homePath}/about`} style={navigationStyle}>
           About
         </NavLink>
-        <NavLink to="/contact" style={navigationStyle}>
+        <NavLink to={`${homePath}/contact`} style={navigationStyle}>
           Contact
         </NavLink>
         {/* Logout Icon */}

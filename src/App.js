@@ -9,7 +9,11 @@ import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
-import About from "./Component/About/About"
+import About from "./components/About/About";
+import { NotFound } from "./pages/NotFound";
+import { DashboardServices } from "./pages/DashboardServices";
+
+import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from './pages/Checkout'
 import Login from './pages/Login/Login'
 import Dashboard from "./Dashboard/Dashboard";
@@ -52,6 +56,19 @@ function App() {
         <Route path="/adminshop/update/:itemID" element={checkAdminAccess(<UpdateItem />)} />
         <Route path="/adminshop/add" element={checkAdminAccess(<AddItem />)} />
         <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
+
+{/* Fatima */}
+        <Route exact path="/dashboard/" element={<Home />} />
+          <Route exact path="/dashboard/gallery" element={<Gallery />} />
+          <Route
+            exact
+            path="/dashboard/services"
+            element={<DashboardServices />}
+          />
+          <Route exact path="/dashboard/about" element={<About />} />
+          <Route exact path="/dashboard/contact" element={<Contact />} />
+          <Route exact path="*" element={<NotFound />} />
+
       </Routes>
     </BrowserRouter>
 

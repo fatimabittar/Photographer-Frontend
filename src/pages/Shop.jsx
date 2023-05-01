@@ -5,16 +5,8 @@ import image2 from "../images/paris.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-  faLinkedin,
-  faBehance,
-} from "@fortawesome/free-brands-svg-icons";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-
+import AboutHeader from "../components/About/AboutHeader/AboutHeader";
+import ba from '../components/About/AboutHeader/ba.jpg'
 
 const Shop = () => {
   const Navigate = useNavigate();
@@ -48,12 +40,12 @@ const Shop = () => {
     }
   };
 
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
+  // function scrollToTop() {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // }
 
   // Filter items based on category
   const boomFilteredItems = Items.filter((item) => item.category === "boom");
@@ -61,9 +53,7 @@ const Shop = () => {
   const lenseFilteredItems = Items.filter((item) => item.category === "lense");
   return (
     <>
-      <header>
-        <img src={image1} alt="background-image" />
-      </header>
+     <AboutHeader backgroundImage={ba}/>
 
       <h1 className="titles">BOOOM</h1>
       <div className="boom">
@@ -133,21 +123,7 @@ const Shop = () => {
         })}
       </div>
 
-      <div className="footer">
-        <p>
-          Copyright &copy; 2023 by Ahmad,Sarah,Fatima,Nour. All Rights Reserved.
-        </p>
-        <div className="icons">
-          <FontAwesomeIcon icon={faBehance} className="behance-icon" />
-          <FontAwesomeIcon icon={faInstagram} className="instagram-icon" />
-          <FontAwesomeIcon icon={faLinkedin} className="linkedin-icon" />
-          <FontAwesomeIcon icon={faTwitter} className="twitter-icon" />
-          <FontAwesomeIcon icon={faFacebook} className="facebook-icon" />
-        </div>
-        <span onClick={scrollToTop} className="scroll-to-top-icon">
-          <FontAwesomeIcon icon={faArrowUp} />
-        </span>
-      </div>
+
     </>
   );
 };

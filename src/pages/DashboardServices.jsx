@@ -10,9 +10,10 @@ import { SideImage } from "../components/SideImage";
 import { ServicesStudentsOffer } from "../components/ServicesStudentsOffer";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
-export const Services = () => {
+export const DashboardServices = () => {
   const [services, setServices] = useState([]);
   const [side_images, setSide_images] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,6 +25,13 @@ export const Services = () => {
   useEffect(() => {
     axios
       .get(`${API_URL}/images`)
+      .then((res) => setSide_images(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .put(`${API_URL}/services`)
       .then((res) => setSide_images(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -44,6 +52,7 @@ export const Services = () => {
                 price={service.price}
                 description={service.description}
                 imageSrc={service.image}
+                editable
               />
             ))}
         </div>

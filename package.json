@@ -18,19 +18,25 @@
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",
     "react": "^18.2.0",
+    "react-compare-slider": "^2.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-parallax": "^3.5.1",
     "react-parallax-component": "^1.0.6",
+    "react-photo-album": "^2.0.4",
+    "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "react-scroll-parallax": "^3.4.2",
+    "react-scroll-up-button": "^1.6.4",
+    "reactjs-popup": "^2.0.5",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.2",
     "sass": "^1.62.1",
     "sweetalert2": "^11.7.3",
     "toast": "^0.5.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webkit": "0.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,7 +44,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",

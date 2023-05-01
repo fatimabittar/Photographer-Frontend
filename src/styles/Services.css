@@ -1,9 +1,12 @@
+.services{
+  background-color: black;
+}
 .background-services {
   width: 100%;
 }
 
 .features {
-  margin-top: 30%;
+  /* margin-top: 30%; */
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: #1b1b1b;
@@ -33,7 +36,7 @@
   width: 40px;
 }
 
-.services-pricing-plan {
+.services-pricing-plan-content {
   position: relative;
   display: flex;
   line-height: 35px;
@@ -67,7 +70,7 @@
 }
 
 .services-pricings-plans {
-  background-color: #999;
+  background-image: radial-gradient(rgb(250, 250, 250),rgb(200, 200, 200) ,rgb(130, 130, 130) );
   height: 800px;
 }
 
