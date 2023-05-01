@@ -13,7 +13,7 @@ import About from "./components/About/About";
 import { NotFound } from "./pages/NotFound";
 import { DashboardServices } from "./pages/DashboardServices";
 
-import AboutHeader from "./components/About/AboutHeader/AboutHeader";
+// import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from './pages/Checkout'
 import Login from './pages/Login/Login'
 import Dashboard from "./Dashboard/Dashboard";
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/gallery" element={<Gallery />} />
@@ -51,6 +51,8 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route path="/Error" element={<Error />} />
+
+        
         <Route path="/dashboard/*" element={checkAdminAccess(<Dashboard />)} />
         <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
         <Route path="/adminshop/update/:itemID" element={checkAdminAccess(<UpdateItem />)} />
@@ -67,7 +69,7 @@ function App() {
           />
           <Route exact path="/dashboard/about" element={<About />} />
           <Route exact path="/dashboard/contact" element={<Contact />} />
-          <Route exact path="*" element={<NotFound />} />
+          {/* <Route exact path="*" element={<NotFound />} /> */}
 
       </Routes>
     </BrowserRouter>

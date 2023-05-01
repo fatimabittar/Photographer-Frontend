@@ -12,9 +12,8 @@ const navigationStyle = ({ isActive }) => ({
 });
 
 export const Header = () => {
-
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:5000/api/users/logout");
@@ -26,34 +25,34 @@ export const Header = () => {
     }
   };
 
-  const adminLoggedIn = true;
-  const homePath = adminLoggedIn ? "/dashboard" : "";
+  // const adminLoggedIn = true;
+  // const homePath = adminLoggedIn ? "/dashboard" : "";
 
   return (
     <div className="header">
-      <NavLink to={`${homePath}`} style={navigationStyle}>
+      <NavLink to={`/`} style={navigationStyle}>
         <img className="logo" src={logo} alt="JAY KHAWAND" />
       </NavLink>
       <div className="navigation-bar">
-        <NavLink to={`${homePath}/gallery`} style={navigationStyle}>
+        <NavLink to={`/gallery`} style={navigationStyle}>
           Gallery
         </NavLink>
-        <NavLink to={`${homePath}/services`} style={navigationStyle}>
+        <NavLink to={`/services`} style={navigationStyle}>
           Services
         </NavLink>
-        <NavLink to={`${homePath}/shop`} style={navigationStyle}>
+        <NavLink to={`/shop`} style={navigationStyle}>
           Shop
         </NavLink>
-        <NavLink to={`${homePath}/about`} style={navigationStyle}>
+        <NavLink to={`/about`} style={navigationStyle}>
           About
         </NavLink>
-        <NavLink to={`${homePath}/contact`} style={navigationStyle}>
+        <NavLink to={`/contact`} style={navigationStyle}>
           Contact
         </NavLink>
         {/* Logout Icon */}
-        <button onClick={handleLogout} className="logout-btn">
+        {/* <button onClick={handleLogout} className="logout-btn">
           <LogoutOutlinedIcon />
-        </button>
+        </button> */}
       </div>
     </div>
   );
