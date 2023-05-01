@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundServices from "../images/180534.jpg";
+import backgroundServices from "../images/ba.jpg";
 import { Parallax } from "react-parallax";
 import icon1 from "../images/icon-1.svg";
 import icon2 from "../images/icon-2.svg";
@@ -8,15 +8,13 @@ import icon4 from "../images/icon-4.svg";
 import icon5 from "../images/icon-5.svg";
 import icon6 from "../images/icon-6.svg";
 import { ServicesFeature } from "../components/ServicesFeature";
+import AboutHeader from "./About/AboutHeader/AboutHeader";
+import ba from './About/AboutHeader/ba.jpg';
 
-export const ServicesBackground = () => {
+export const  ServicesBackground = () => {
   return (
     <div>
-      <Parallax
-        bgImage={backgroundServices}
-        strength={800}
-        className="services-background-image"
-      >
+     <AboutHeader backgroundImage={ba}/>
         <div className="features" id="feature">
             <ServicesFeature
               imageSrc={icon1}
@@ -53,7 +51,7 @@ export const ServicesBackground = () => {
             bibendum eros amet vacun the vulputate in the vitae miss."
             />
         </div>
-      </Parallax>
+      
     </div>
   );
 };
