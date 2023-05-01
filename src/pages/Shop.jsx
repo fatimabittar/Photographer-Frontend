@@ -4,7 +4,7 @@ import image1 from "../images/ba2.jpg";
 import image2 from "../images/paris.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -15,7 +15,22 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
+
 const Shop = () => {
+  const Navigate = useNavigate();
+
+  function handleBuyClick(ItemId) {
+    if (localStorage.getItem("token")) {
+      Navigate(`/checkout?ItemId=${ItemId}`);
+    } else {
+      Navigate("/login");
+    }
+  }
+
+  // function handleBuyClick(ItemId) {
+  //   Navigate(`/checkout?ItemId=${ItemId}`);
+  // }
+
   const [Items, setItems] = useState([]);
 
   useEffect(() => {
@@ -55,11 +70,15 @@ const Shop = () => {
         {boomFilteredItems.map((item) => {
           return (
             <div key={item._id} className="col-1">
-              <img src={image2} alt="" />
+              <img src={item.image_url} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
-
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>
@@ -76,7 +95,14 @@ const Shop = () => {
               <img src={image2} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
+
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
+
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>
@@ -93,7 +119,12 @@ const Shop = () => {
               <img src={image2} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>

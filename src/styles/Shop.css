@@ -29,7 +29,6 @@ header img {
   text-align: center;
   background-color: #e3d2d2c4;
   margin: auto;
-  
 }
 .prints {
   background-color: black;
@@ -95,20 +94,43 @@ header img {
   border-radius: 100px;
 }
 
-.buy {
-  margin: 0 40px 0 0;
-}
-.buy,
 .details {
+  fill: #ffffff;
+  color: #ffffff;
+  background-color: #ff0000;
+  border-style: none;
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
+  cursor: pointer;
   text-decoration: none;
-  color: black;
-  border: 1.5px solid black;
-  padding: 8px;
-  background: #eedfdf;
-  border-radius: 3px;
+  margin: 0 5px 0 5px;
+}
+.details:hover {
+  fill: #ffffff;
+  color: #ffffff;
+  background-color: #cf1313;
+  border-style: none;
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
 }
 
-.buy:hover,
-.details:hover {
-  background-color: rgb(249, 187, 73);
+.buy-btn {
+  fill: #ffffff;
+  color: #ffffff;
+  background-color: #ff0000;
+  border-style: none;
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+.buy-btn:hover {
+  fill: #ffffff;
+  color: #ffffff;
+  background-color: #cf1313;
+  border-style: none;
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
 }

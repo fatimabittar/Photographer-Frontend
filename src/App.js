@@ -1,7 +1,8 @@
 import "./App.css";
+import { Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+// import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
@@ -9,7 +10,29 @@ import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
 import About from "./Component/About/About"
+import Checkout from './pages/Checkout'
+import Login from './pages/Login/Login'
+import Dashboard from "./Dashboard/Dashboard";
+import Error from './pages/Error'
+// ============================ADMIN========================
+import AdminShop from './Dashboard/AdminShop'
+import UpdateItem from "./Dashboard/UpdateItem";
+import AddItem from "./Dashboard/AddItem";
+import UserInfo from "./Dashboard/UserInfo";
+
 function App() {
+
+  const isAdmin = localStorage.getItem("role") === "admin";
+  const checkAdminAccess = (element) => {
+    return isAdmin ? (
+      element
+    ) : (
+      <Navigate to="/Error" replace />
+    );
+  };
+  console.log('IsAdmin:', isAdmin);
+
+
   return (
     <BrowserRouter>
       <Header />
@@ -19,11 +42,22 @@ function App() {
         <Route exact path="/services" element={<Services />} />
         <Route exact path="/shop" element={<Shop />} />
         <Route path="shop/:itemID" element={<ItemDetails />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route path="/Error" element={<Error />} />
+        <Route path="/dashboard/*" element={checkAdminAccess(<Dashboard />)} />
+        <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
+        <Route path="/adminshop/update/:itemID" element={checkAdminAccess(<UpdateItem />)} />
+        <Route path="/adminshop/add" element={checkAdminAccess(<AddItem />)} />
+        <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
       </Routes>
-      {/* <Footer /> */}
     </BrowserRouter>
+
+
+
+
   );
 }
 

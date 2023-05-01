@@ -2,6 +2,9 @@ import React from "react";
 import logo from "../images/logo.png";
 import { NavLink } from "react-router-dom";
 import "../styles/Header.css";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const navigationStyle = ({ isActive }) => ({
   color: isActive ? "gray" : "white",
@@ -9,6 +12,20 @@ const navigationStyle = ({ isActive }) => ({
 });
 
 export const Header = () => {
+
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/users/logout");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="header">
       <NavLink to="/" style={navigationStyle}>
@@ -30,7 +47,12 @@ export const Header = () => {
         <NavLink to="/contact" style={navigationStyle}>
           Contact
         </NavLink>
+        {/* Logout Icon */}
+        <button onClick={handleLogout} className="logout-btn">
+          <LogoutOutlinedIcon />
+        </button>
       </div>
     </div>
   );
 };
+export default Header;

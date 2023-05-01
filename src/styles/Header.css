@@ -15,3 +15,14 @@
 .logo {
     margin: auto 0;
 }
+
+/* Logout Icon CSS*/
+.logout-btn{
+    background-color: black;
+    color: white;
+    border:none;
+}
+.logout-btn:hover::after{
+content:"logout";
+font-size:large;
+}
