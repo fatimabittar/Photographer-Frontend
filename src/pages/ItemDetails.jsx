@@ -1,12 +1,22 @@
 import React from "react";
-import { useParams } from "react-router-dom"; //params, (short for parameters) are used to pass data between different components or pages.
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import image1 from "../images/paris.jpg";
+import "../styles/ItemDetails.css";
+import { useNavigate } from "react-router-dom";
 
 const ItemDetail = () => {
-  let { itemID } = useParams();
+  const Navigate = useNavigate();
 
+  function handleBuyClick(ItemId) {
+    if (localStorage.getItem("token")) {
+      Navigate(`/checkout?ItemId=${ItemId}`);
+    } else {
+      Navigate("/login");
+    }
+  }
+  let { itemID } = useParams();
   const [item, setItem] = useState({});
 
   useEffect(() => {
@@ -27,25 +37,40 @@ const ItemDetail = () => {
 
   return (
     <>
-      {/* {item && <h1>{item.title}</h1>}
-      {item && <h1>{item.description}</h1>}
-      {item && <h1>{item.size}</h1>}
-      {item && <h1>{item.price}</h1>}
-      {item && <h1>{item.stock}</h1>}
-      {item && <h1>{item.category}</h1>} */}
-
       <div className="container">
-        <div className="col-1">
-          <img src={image1} alt="" />
+        <div className="card details-card ">
+          <div className="row">
+            <div>
+              <img className="image" src={image1} alt="" />
+            </div>
+            <div className=" description-container ">
+              <div className="main-description">
+                <div>
+                  {item && <h3 className="product-title ">{item.title}</h3>}
+                  {item && <p className="product-price">${item.price}</p>}
+                </div>
+                <hr />
+                {item && (
+                  <p className="product-description">{item.description}</p>
+                )}
+                <hr />
+                <div>
+                  {item && <p className="product-category">{item.category}</p>}
+                  {item && (
+                    <p className="product-stock">In stock:{item.stock} </p>
+                  )}
+                </div>
+                {item && <p className="size">Size: {item.size}</p>}
+                <button
+                  className="buy-btn"
+                  onClick={() => handleBuyClick(item._id)}
+                >
+                  Buy
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="col-2">
-          {item && <h1>{item.title}</h1>}
-          {item && <h1>{item.description}</h1>}
-          {item && <h1>{item.size}</h1>}
-          {item && <h1>{item.price}</h1>}
-          <button>buy now</button>
-        </div>
-        <div className="col-3">{item && <h1>{item.stock}</h1>}</div>
       </div>
     </>
   );

@@ -1,7 +1,8 @@
 import "./App.css";
+import { Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+// import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
@@ -12,8 +13,24 @@ import About from "./components/About/About";
 import { NotFound } from "./pages/NotFound";
 import { DashboardServices } from "./pages/DashboardServices";
 
-import AboutHeader from "./components/About/AboutHeader/AboutHeader";
+// import AboutHeader from "./components/About/AboutHeader/AboutHeader";
+import Checkout from "./pages/Checkout";
+import Login from "./pages/Login/Login";
+import Dashboard from "./Dashboard/Dashboard";
+import Error from "./pages/Error";
+// ============================ADMIN========================
+import AdminShop from "./Dashboard/AdminShop";
+import UpdateItem from "./Dashboard/UpdateItem";
+import AddItem from "./Dashboard/AddItem";
+import UserInfo from "./Dashboard/UserInfo";
+
 function App() {
+  const isAdmin = localStorage.getItem("role") === "admin";
+  const checkAdminAccess = (element) => {
+    return isAdmin ? element : <Navigate to="/Error" replace />;
+  };
+  console.log("IsAdmin:", isAdmin);
+
   return (
     <BrowserRouter>
       <div className="app">
@@ -32,17 +49,10 @@ function App() {
             path="/dashboard/services"
             element={<DashboardServices />}
           />
-          <Route exact path="/dashboard/shop" element={<Shop />} />
-          <Route
-            exact
-            path="/dashboard/shop/:itemID"
-            element={<ItemDetails />}
-          />
           <Route exact path="/dashboard/about" element={<About />} />
           <Route exact path="/dashboard/contact" element={<Contact />} />
-          <Route exact path="*" element={<NotFound />} />
+          {/* <Route exact path="*" element={<NotFound />} /> */}
         </Routes>
-        <Footer />
       </div>
     </BrowserRouter>
   );
