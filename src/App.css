@@ -27,3 +27,15 @@
   border-radius: 17px 17px 17px 17px;
   padding: 15px 30px;
 }
+
+.upload-and-view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-and-view-img{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}

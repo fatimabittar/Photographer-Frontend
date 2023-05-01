@@ -1,14 +1,25 @@
 import React from "react";
 
-export const SideImage = ({ index, image, className, width, height, imageWidth = '100%' , containerWidth = '100%' }) => {
+export const SideImage = ({
+  key,
+  image,
+  className,
+  width,
+  height,
+  containerWidth = "100%",
+}) => {
+  if(!image) return null;
   return (
-    // <div className="sidimg" key={index} width={imageWidth}>
-      <img
-        src={`data:image/jpeg;base64,${image}`}
-        alt="sideImage"
-        className={className}
-        style={{ width: `calc(${containerWidth} - 0px)`, aspectRatio: `${width}/${height}`, height: "auto" }}
-      />
-    // </div>
+    <img
+      key={key}
+      src={`data:image/jpeg;base64,${image}`}
+      alt="sideImage"
+      className={className}
+      style={{
+        width: `calc(${containerWidth} - 0px)`,
+        aspectRatio: `${width}/${height}`,
+        height: "auto",
+      }}
+    />
   );
 };
