@@ -2,7 +2,7 @@ import "./App.css";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
-// import { Footer } from "./components/Footer";
+import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
@@ -74,6 +74,7 @@ function App() {
           <Route exact path="/dashboard/contact" element={<Contact />} />
           {/* <Route exact path="*" element={<NotFound />} /> */}
         </Routes>
+        <Footer/>
       </div>
     </BrowserRouter>
   );

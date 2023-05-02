@@ -117,12 +117,6 @@ export const DashboardServices = () => {
                   className="side-image"
                 />
               ))}
-            {console.log(
-              "hi",
-              side_images.filter(
-                (img) => img.page === "services" && img.section === 1
-              )
-            )}
           </div>
           <div className="services-offers">
             {services
