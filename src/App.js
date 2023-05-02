@@ -33,15 +33,36 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* <Header / > */}
       <div className="app">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/gallery" element={<Gallery />} />
           <Route exact path="/services" element={<Services />} />
           <Route exact path="/shop" element={<Shop />} />
-          <Route exact path="/shop/:itemID" element={<ItemDetails />} />
+          <Route path="shop/:itemID" element={<ItemDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
+          <Route path="/Error" element={<Error />} />
+
+          <Route
+            path="/dashboard/*"
+            element={checkAdminAccess(<Dashboard />)}
+          />
+          <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
+          <Route
+            path="/adminshop/update/:itemID"
+            element={checkAdminAccess(<UpdateItem />)}
+          />
+          <Route
+            path="/adminshop/add"
+            element={checkAdminAccess(<AddItem />)}
+          />
+          <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
+
+          {/* Fatima */}
           <Route exact path="/dashboard/" element={<Home />} />
           <Route exact path="/dashboard/gallery" element={<Gallery />} />
           <Route

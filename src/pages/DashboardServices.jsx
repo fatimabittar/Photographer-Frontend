@@ -9,6 +9,8 @@ import { SideImage } from "../components/SideImage";
 // import sidimg from "../images/sideImage.jpg";
 import { ServicesStudentsOffer } from "../components/ServicesStudentsOffer";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { ServicePricingForm } from "../components/ServicePricingForm";
+import { DeleteButton } from "../components/DeleteButton";
 
 export const DashboardServices = () => {
   const [services, setServices] = useState([]);
@@ -37,13 +39,23 @@ export const DashboardServices = () => {
 
   useEffect(() => getServices(), []);
 
-  const onEditServicePlanning = async (id, formData) => {
+  const onEditServicePlanning = async (id, data) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("price", data.price);
+    formData.append("description", data.description);
+    formData.append("status", "customer");
+    if (data.image) formData.append("image_url", data.image);
+
     await axios({
       url: `${API_URL}/services/${id}`,
       data: formData,
-      method: "put",
+      method: "PUT",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
-      .then((res) => getServices())
+      .then(() => getServices())
       .catch((err) => console.log(err));
   };
 
@@ -55,18 +67,38 @@ export const DashboardServices = () => {
           <h1>Pricing Plan</h1>
           <p>Affordable packages contact us for further information</p>
         </div>
+        <ServicePricingForm
+          onSuccess={() => getServices()}
+          onError={(error) => console.log(error)}
+          visible
+        />
         <div className="services-plans">
           {services
             .filter((service) => service.status === "customer")
             .map((service) => (
-              <ServicesPricingPlan
-                id={service.id}
-                title={service.title}
-                price={service.price}
-                description={service.description}
-                imageSrc={service.image}
-                onEdit={onEditServicePlanning}
-              />
+              <div>
+                <ServicesPricingPlan
+                  id={service.id}
+                  title={service.title}
+                  price={service.price}
+                  description={service.description}
+                  imageSrc={service.image}
+                />
+                <ServicePricingForm
+                  service={service}
+                  onSuccess={() => getServices()}
+                  onError={(error) => console.log(error)}
+                  visible
+                />
+                <DeleteButton
+                  path={`/services/${service.id}`}
+                  onSuccess={() => getServices()}
+                  onError={(error) => console.log(error)}
+                  visible
+                >
+                  You are going to delete this service
+                </DeleteButton>
+              </div>
             ))}
         </div>
       </div>
@@ -75,16 +107,22 @@ export const DashboardServices = () => {
           <h1>We Also Offer Educational Services </h1>
         </div>
         <div className="sideServ">
-          <div className="">
+          <div style={{ width: "50%" }}>
             {side_images
               .filter((img) => img.page === "services" && img.section === 1)
               .map((img) => (
                 <SideImage
                   key={img.id}
-                  imgSrc={img.image}
+                  image={img.image}
                   className="side-image"
                 />
               ))}
+            {console.log(
+              "hi",
+              side_images.filter(
+                (img) => img.page === "services" && img.section === 1
+              )
+            )}
           </div>
           <div className="services-offers">
             {services
