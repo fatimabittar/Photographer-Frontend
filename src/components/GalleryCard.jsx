@@ -1,6 +1,7 @@
 import React from "react"
+import Options from "./imageList/Options"
+
 export const GalleryCard = (props) => {
-   console.log("hiii")
     return (
         <div className="pcard-container">
           <div className="pcard">

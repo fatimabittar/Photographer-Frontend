@@ -7,7 +7,6 @@ import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
 import { Shop } from "./pages/Shop";
 import { Contact } from "./pages/Contact";
-import { GalleryDashboard } from "./pages/GalleryDashboard";
 import About from "./Component/About/About"
 function App() {
   return (
@@ -20,8 +19,7 @@ function App() {
         <Route exact path="/shop" element={<Shop />} />
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/contact" element={<Contact />} />
-        <Route exact path="/GalleryDashboard" element={<GalleryDashboard/>} />
-      </Routes>
+       </Routes>
       <Footer />
     </BrowserRouter>
   );

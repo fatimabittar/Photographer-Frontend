@@ -2,14 +2,23 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Tooltip from '@mui/material/Tooltip';
 import { IconButton } from '@mui/material';
-import { Delete, MoreVert } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
+import axios from 'axios';
 
-export default function Options() {
+export default function Options(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/gallery/delete/${props.id}`);
+      console.log(response)
+    } catch (error) {
+      // handle error
+    }
+    handleClose();
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -68,12 +77,8 @@ export default function Options() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem  onClick={handleClose}>
-          
-          <div style={{marginLeft:"1rem"}}>
-             Delete
-          </div>
-         
+         <MenuItem onClick={handleDelete}>
+          <div style={{ marginLeft: '1rem' }}>Delete</div>
         </MenuItem>
       </Menu>
     </React.Fragment>
