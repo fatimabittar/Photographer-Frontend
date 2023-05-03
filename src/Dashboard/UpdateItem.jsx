@@ -8,21 +8,38 @@ const UpdateItem = () => {
   const navigate = useNavigate();
 
   const [Items, setItems] = useState({});
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     price: 0,
     size: "",
     stock: "",
-    // image: '',
+    image: "",
     category: "",
   });
 
   const updateItem = async (itemID, updatedItemData) => {
     try {
+      const formData = new FormData();
+      formData.append("title", updatedItemData.title);
+      formData.append("description", updatedItemData.description);
+      formData.append("price", updatedItemData.price);
+      formData.append("size", updatedItemData.size);
+      formData.append("stock", updatedItemData.stock);
+      formData.append("category", updatedItemData.category);
+      if (imageFile) {
+        formData.append("image_url", imageFile);
+      }
+
       const response = await axios.put(
         `http://localhost:5000/api/Items/${itemID}`,
-        updatedItemData,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
       const updateItem = response.data;
       console.log(updateItem);
@@ -64,7 +81,6 @@ const UpdateItem = () => {
 
     getById();
   }, [itemID]);
-
   return (
     <form onSubmit={formSubmit} className="form">
       <label htmlFor="title">Title</label>
@@ -110,6 +126,14 @@ const UpdateItem = () => {
         name="stock"
         value={formData.stock}
         onChange={handleInputChange}
+      />
+      <label htmlFor="image">Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        onChange={(e) => setImageFile(e.target.files[0])}
       />
 
       <label htmlFor="category">category</label>

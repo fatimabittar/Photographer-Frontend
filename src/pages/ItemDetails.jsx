@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import image1 from "../images/paris.jpg";
 import "../styles/ItemDetails.css";
 import { useNavigate } from "react-router-dom";
 
@@ -35,13 +34,14 @@ const ItemDetail = () => {
     }
   };
 
+
   return (
     <>
       <div className="container">
         <div className="card details-card ">
           <div className="row">
             <div>
-              <img className="image" src={image1} alt="" />
+              {item && <img src={item.image_url} alt="" />}
             </div>
             <div className=" description-container ">
               <div className="main-description">
