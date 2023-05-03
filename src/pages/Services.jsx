@@ -53,13 +53,13 @@ export const Services = () => {
           <h1>We Also Offer Educational Services </h1>
         </div>
         <div className="sideServ">
-          <div className="">
+          <div style={{ width: "50%" }}>
             {side_images
               .filter((img) => img.page === "services" && img.section === 1)
               .map((img) => (
                 <SideImage
                   key={img.id}
-                  imgSrc={img.image}
+                  image={img.image}
                   className="side-image"
                 />
               ))}

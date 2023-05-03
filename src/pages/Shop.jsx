@@ -1,14 +1,22 @@
 import React from "react";
 import "../styles/Shop.css";
-import image1 from "../images/ba2.jpg";
-import image2 from "../images/paris.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AboutHeader from "../components/About/AboutHeader/AboutHeader";
-import ba from '../components/About/AboutHeader/ba.jpg'
+import ba from "../components/About/AboutHeader/ba.jpg";
 
 const Shop = () => {
+  const Navigate = useNavigate();
+
+  function handleBuyClick(ItemId) {
+    if (localStorage.getItem("token")) {
+      Navigate(`/checkout?ItemId=${ItemId}`);
+    } else {
+      Navigate("/login");
+    }
+  }
+
   const [Items, setItems] = useState([]);
 
   useEffect(() => {
@@ -25,32 +33,28 @@ const Shop = () => {
       console.log(error);
     }
   };
-
-  // function scrollToTop() {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   });
-  // }
-
   // Filter items based on category
   const boomFilteredItems = Items.filter((item) => item.category === "boom");
   const printFilteredItems = Items.filter((item) => item.category === "print");
   const lenseFilteredItems = Items.filter((item) => item.category === "lense");
   return (
     <>
-     <AboutHeader backgroundImage={ba}/>
+      <AboutHeader backgroundImage={ba} />
 
       <h1 className="titles">BOOOM</h1>
       <div className="boom">
         {boomFilteredItems.map((item) => {
           return (
             <div key={item._id} className="col-1">
-              <img src={image2} alt="" />
+              <img src={item.image_url} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
-
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>
@@ -64,10 +68,15 @@ const Shop = () => {
         {printFilteredItems.map((item) => {
           return (
             <div key={item._id} className="col-1">
-              <img src={image2} alt="" />
+              <img src={item.image_url} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>
@@ -81,10 +90,15 @@ const Shop = () => {
         {lenseFilteredItems.map((item) => {
           return (
             <div key={item._id} className="col-1">
-              <img src={image2} alt="" />
+              <img src={item.image_url} alt="" />
               <h2>{item.title}</h2>
               <h6>{item.description}</h6>
-              <Link className="buy">BUY NOW</Link>
+              <button
+                className="buy-btn"
+                onClick={() => handleBuyClick(item._id)}
+              >
+                Buy
+              </button>
               <Link to={`/shop/${item._id}`} className="details">
                 More Details
               </Link>
@@ -92,8 +106,6 @@ const Shop = () => {
           );
         })}
       </div>
-
-
     </>
   );
 };
