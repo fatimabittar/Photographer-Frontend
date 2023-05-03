@@ -39,25 +39,25 @@ export const DashboardServices = () => {
 
   useEffect(() => getServices(), []);
 
-  const onEditServicePlanning = async (id, data) => {
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("price", data.price);
-    formData.append("description", data.description);
-    formData.append("status", "customer");
-    if (data.image) formData.append("image_url", data.image);
+  // const onEditServicePlanning = async (id, data) => {
+  //   const formData = new FormData();
+  //   formData.append("title", data.title);
+  //   formData.append("price", data.price);
+  //   formData.append("description", data.description);
+  //   formData.append("status", "customer");
+  //   if (data.image) formData.append("image_url", data.image);
 
-    await axios({
-      url: `${API_URL}/services/${id}`,
-      data: formData,
-      method: "PUT",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then(() => getServices())
-      .catch((err) => console.log(err));
-  };
+  //   await axios({
+  //     url: `${API_URL}/services/${id}`,
+  //     data: formData,
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   })
+  //     .then(() => getServices())
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div className="services">
@@ -68,6 +68,7 @@ export const DashboardServices = () => {
           <p>Affordable packages contact us for further information</p>
         </div>
         <ServicePricingForm
+          type={"customer"}
           onSuccess={() => getServices()}
           onError={(error) => console.log(error)}
           visible
@@ -85,6 +86,7 @@ export const DashboardServices = () => {
                   imageSrc={service.image}
                 />
                 <ServicePricingForm
+                  type={"customer"}
                   service={service}
                   onSuccess={() => getServices()}
                   onError={(error) => console.log(error)}
@@ -119,14 +121,37 @@ export const DashboardServices = () => {
               ))}
           </div>
           <div className="services-offers">
+            <ServicePricingForm
+              type="student"
+              onSuccess={() => getServices()}
+              onError={(error) => console.log(error)}
+              visible
+            />
             {services
               .filter((service) => service.status === "student")
               .map((service) => (
-                <ServicesStudentsOffer
-                  icon={faCamera}
-                  title={service.title}
-                  description={service.description}
-                />
+                <>
+                  <ServicesStudentsOffer
+                    icon={faCamera}
+                    title={service.title}
+                    description={service.description}
+                  />
+                  <ServicePricingForm
+                    type={"student"}
+                    service={service}
+                    onSuccess={() => getServices()}
+                    onError={(error) => console.log(error)}
+                    visible
+                  />
+                  <DeleteButton
+                    path={`/services/${service.id}`}
+                    onSuccess={() => getServices()}
+                    onError={(error) => console.log(error)}
+                    visible
+                  >
+                    You are going to delete this service
+                  </DeleteButton>
+                </>
               ))}
           </div>
         </div>

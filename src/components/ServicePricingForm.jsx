@@ -37,11 +37,11 @@ import { UploadAndViewImage } from "./UploadAndDisplayImage";
 export const ServicePricingForm = ({
   service = {},
   onSuccess,
+  type,
   onError,
   visible,
 }) => {
-
-  const {id, title, description, price } = service;
+  const { id, title, description, price } = service;
 
   const [data, setData] = useState({
     title,
@@ -55,7 +55,7 @@ export const ServicePricingForm = ({
     formData.append("title", data.title);
     formData.append("price", data.price);
     formData.append("description", data.description);
-    formData.append("status", "customer");
+    formData.append("status", type);
     if (data.image) formData.append("image_url", data.image);
 
     if (id) {
@@ -96,20 +96,23 @@ export const ServicePricingForm = ({
         id="title"
         name="title"
         value={data.title}
-        onChange={(event) =>
-          setData({ ...data, title: event?.target?.value })
-        }
+        onChange={(event) => setData({ ...data, title: event?.target?.value })}
       />
-      <label htmlFor="price">Price:</label>
-      <input
-        type="text"
-        id="price"
-        name="price"
-        value={data.price}
-        onChange={(event) =>
-          setData({ ...data, price: event?.target?.value })
-        }
-      />
+
+      {type === "customer" && (
+        <>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="text"
+            id="price"
+            name="price"
+            value={data.price}
+            onChange={(event) =>
+              setData({ ...data, price: event?.target?.value })
+            }
+          />
+        </>
+      )}
 
       <label htmlFor="description">Description:</label>
       <textarea
@@ -123,15 +126,17 @@ export const ServicePricingForm = ({
           })
         }
       />
-      <UploadAndViewImage
-        image={data.image}
-        onChange={(image) =>
-          setData({
-            ...data,
-            image,
-          })
-        }
-      />
+      {type === "customer" && (
+        <UploadAndViewImage
+          image={data.image}
+          onChange={(image) =>
+            setData({
+              ...data,
+              image,
+            })
+          }
+        />
+      )}
     </PopupForm>
   );
 };

@@ -16,7 +16,7 @@ import { DashboardServices } from "./pages/DashboardServices";
 // import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login/Login";
-import Dashboard from "./Dashboard/Dashboard";
+import HomeDashboard from "./Dashboard/HomeDashboard";
 import Error from "./pages/Error";
 // ============================ADMIN========================
 import AdminShop from "./Dashboard/AdminShop";
@@ -49,7 +49,7 @@ function App() {
 
           <Route
             path="/dashboard/*"
-            element={checkAdminAccess(<Dashboard />)}
+            element={checkAdminAccess(<HomeDashboard />)}
           />
           <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
           <Route
@@ -63,7 +63,7 @@ function App() {
           <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
 
           {/* Fatima */}
-          <Route exact path="/dashboard/" element={<Home />} />
+          {/* <Route exact path="/dashboard/" element={<Home />} /> */}
           <Route exact path="/dashboard/gallery" element={<Gallery />} />
           <Route
             exact
