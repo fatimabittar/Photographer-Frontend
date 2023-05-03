@@ -54,7 +54,9 @@ const AdminShop = () => {
 
   return (
     <>
-      <Link to={"/adminshop/add"} className="btn-add">ADD New Item</Link>
+      <Link to={"/adminshop/add"} className="btn-add">
+        ADD New Item
+      </Link>
       <div>
         <div className="container">
           <h1 className="items-h1">ITEMS Table</h1>
@@ -102,7 +104,9 @@ const AdminShop = () => {
                       <td>{item.price}</td>
                       <td>{item.size}</td>
                       <td>{item.stock}</td>
-                      <td>image here</td>
+                      <td>
+                        <img src={item.image_url} />
+                      </td>
                       <td>{item.category}</td>
                       <td>
                         <button
