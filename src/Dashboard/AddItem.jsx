@@ -8,7 +8,7 @@ function AddItem() {
   const [price, setPrice] = useState(0);
   const [size, setSize] = useState("");
   const [stock, setStock] = useState(0);
-  //const [image, setImage] = useState("");
+  const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
 
   let navigate = useNavigate();
@@ -18,22 +18,31 @@ function AddItem() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/Items/", {
-        title,
-        description,
-        price,
-        size,
-        stock,
-        // image,
-        category,
-      });
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("size", size);
+      formData.append("stock", stock);
+      formData.append("image_url", image);
+      formData.append("category", category);
+
+      const response = await axios.post(
+        "http://localhost:5000/api/Items/",
+
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
 
       navigate("/adminshop");
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <>
       <h1>ADD Items</h1>
@@ -116,23 +125,19 @@ function AddItem() {
             }}
           />
         </div>
-
-        {/* for image */}
-        {/* <div className="mb-3">
-          <label htmlFor="ItemStock" className="form-label">
-            IMage
+        <div className="mb-3">
+          <label htmlFor="ItemImage" className="form-label">
+            Image
           </label>
           <input
-            type="text"
+            type="file"
             className="form-control"
-            id="ItemStock"
-            placeholder="Item stock"
-            aria-describedby="Item title"
+            id="ItemImage"
             onChange={(e) => {
-              setStock(e.target.value);
+              setImage(e.target.files[0]);
             }}
           />
-        </div> */}
+        </div>
 
         <div className="mb-3">
           <label htmlFor="ItemCategory" className="form-label">
