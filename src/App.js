@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
-import { Gallery } from "./pages/Gallery";
+import { GalleryDashboard } from "./pages/GalleryDashboard";
+import { Gallery} from "./pages/Gallery";
 import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
@@ -49,7 +50,7 @@ function App() {
 
           <Route
             path="/dashboard/*"
-            element={checkAdminAccess(<Dashboard />)}
+            element={checkAdminAccess(<Home />)}
           />
           <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
           <Route
@@ -64,7 +65,7 @@ function App() {
 
           {/* Fatima */}
           <Route exact path="/dashboard/" element={<Home />} />
-          <Route exact path="/dashboard/gallery" element={<Gallery />} />
+          <Route exact path="/dashboard/gallery" element={<GalleryDashboard />} />
           <Route
             exact
             path="/dashboard/services"
