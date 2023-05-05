@@ -28,7 +28,7 @@ function SectionOne() {
               title={object.title}
               description={object.description}
               key={object._id}
-              imageSrc={object.image_url}
+              imageSrc={object.image}
             />
           );
           return null;
