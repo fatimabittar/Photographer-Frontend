@@ -12,6 +12,7 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ServicePricingForm } from "./ServicesDashboard/ServicePricingForm";
 import { DeleteButton } from "../Dashboard/DashboardCommon/DeleteButton";
 import "../styles/Dashboard.css";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import { ImageForm } from "./DashboardCommon/ImageForm";
 
 export const DashboardServices = () => {
@@ -153,12 +154,13 @@ export const DashboardServices = () => {
                   <SideImage
                     key={img.id}
                     image={img.image}
-                    className="side-image"
+                    className="side-image img-form-edit"
                   />
-                  <ImageForm id={img.id} visible />
+                  <ImageForm imageSource={img} visible />
                 </>
               ))}
           </div>
+
           <div className="services-offers">
             {studentStartIndex === 0 ? (
               <Button

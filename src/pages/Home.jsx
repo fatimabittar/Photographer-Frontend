@@ -13,23 +13,6 @@ import AboutHeader from "../components/About/AboutHeader/AboutHeader";
 
 export const Home = () => {
   const [side_images, setSide_images] = useState([]);
-
-  //new me
-  // const [photoDivided, setPhotoDivided] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     try {
-  //       const response = await axios.get(`${API_URL}/images?section=4&page=home`);
-  //       setPhotoDivided(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchImages();
-  // }, []);
-
-  //
   useEffect(() => {
     axios
       .get(`${API_URL}/images`)

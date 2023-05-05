@@ -16,7 +16,7 @@ import { DashboardServices } from "./Dashboard/DashboardServices";
 // import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login/Login";
-import HomeDashboard from "./Dashboard/HomeDashboard";
+import {HomeDashboard} from "./Dashboard/HomeDashboard";
 import Error from "./pages/Error";
 // ============================ADMIN========================
 import AdminShop from "./Dashboard/AdminShop";
@@ -47,7 +47,7 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route path="/Error" element={<Error />} />
 
-          <Route path="/dashboard/*" element={checkAdminAccess(<Home />)} />
+          <Route path="/dashboard/*" element={checkAdminAccess(<HomeDashboard />)} />
           <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
           <Route
             path="/adminshop/update/:itemID"
