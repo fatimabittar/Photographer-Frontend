@@ -12,7 +12,6 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ServicePricingForm } from "./ServicesDashboard/ServicePricingForm";
 import { DeleteButton } from "../Dashboard/DashboardCommon/DeleteButton";
 import "../styles/Dashboard.css";
-import { Dropdown, DropdownButton } from "react-bootstrap";
 import { ImageForm } from "./DashboardCommon/ImageForm";
 
 export const DashboardServices = () => {
