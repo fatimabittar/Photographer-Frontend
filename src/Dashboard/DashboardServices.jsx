@@ -9,8 +9,12 @@ import { SideImage } from "../components/SideImage";
 import { Button } from "@mui/material";
 import { ServicesStudentsOffer } from "../components/ServicesStudentsOffer";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { ServicePricingForm } from "./ServicesDashboard/ServicePricingForm";
+import { DeleteButton } from "../Dashboard/DashboardCommon/DeleteButton";
+import "../styles/Dashboard.css";
+import { ImageForm } from "./DashboardCommon/ImageForm";
 
-export const Services = () => {
+export const DashboardServices = () => {
   const [studentServices, setStudentServices] = useState([]);
   const [customerServices, setCustomerServices] = useState([]);
   const [side_images, setSide_images] = useState([]);
@@ -18,6 +22,13 @@ export const Services = () => {
   const [customerStartIndex, setCustomerStartIndex] = useState(0);
 
   useEffect(() => {
+    axios
+      .get(`${API_URL}/images`)
+      .then((res) => setSide_images(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const getServices = () => {
     axios
       .get(`${API_URL}/services`)
       .then((res) => {
@@ -29,14 +40,9 @@ export const Services = () => {
         );
       })
       .catch((err) => console.log(err));
-  }, []);
+  };
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/images`)
-      .then((res) => setSide_images(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  useEffect(() => getServices(), []);
 
   return (
     <div className="services">
@@ -46,6 +52,12 @@ export const Services = () => {
           <h1>Pricing Plan</h1>
           <p>Affordable packages contact us for further information</p>
         </div>
+        <ServicePricingForm
+          type={"customer"}
+          onSuccess={() => getServices()}
+          onError={(error) => console.log(error)}
+          visible
+        />
         <div className="services-plans">
           {customerStartIndex === 0 ? (
             <Button
@@ -68,15 +80,37 @@ export const Services = () => {
             </Button>
           )}
           {customerServices
-            .filter((service) => service.status === "customer")
             .slice(customerStartIndex, customerStartIndex + 3)
             .map((service) => (
-              <ServicesPricingPlan
-                title={service.title}
-                price={service.price}
-                description={service.description}
-                imageSrc={service.image}
-              />
+              <div>
+                <ServicesPricingPlan
+                  id={service.id}
+                  title={service.title}
+                  price={service.price}
+                  description={service.description}
+                  imageSrc={service.image}
+                />
+                <div className="services-student-update">
+                  <ServicePricingForm
+                    type="customer"
+                    service={service}
+                    onSuccess={() => getServices()}
+                    onError={(error) => console.log(error)}
+                    visible
+                  />
+                  <DeleteButton
+                    path={`/services/${service.id}`}
+                    onSuccess={() => {
+                      getServices();
+                      setCustomerStartIndex(0);
+                    }}
+                    onError={(error) => console.log(error)}
+                    visible
+                  >
+                    You are going to delete this service
+                  </DeleteButton>
+                </div>
+              </div>
             ))}
           {customerStartIndex + 4 > customerServices.length ? (
             <Button
@@ -101,21 +135,31 @@ export const Services = () => {
         </div>
       </div>
       <div>
-        <div className="services-students-offers">
+        <div className="services-students-offers dash-services-students-offers">
           <h1>We Also Offer Educational Services </h1>
+          <ServicePricingForm
+            type="student"
+            onSuccess={() => getServices()}
+            onError={(error) => console.log(error)}
+            visible
+          />
         </div>
         <div className="sideServ">
-          <div style={{ width: "50%" }}>
+          <div style={{ width: "40%" }}>
             {side_images
               .filter((img) => img.page === "services" && img.section === 1)
               .map((img) => (
-                <SideImage
-                  key={img.id}
-                  image={img.image}
-                  className="side-image"
-                />
+                <>
+                  <SideImage
+                    key={img.id}
+                    image={img.image}
+                    className="side-image img-form-edit"
+                  />
+                  <ImageForm imageSource={img} visible />
+                </>
               ))}
           </div>
+
           <div className="services-offers">
             {studentStartIndex === 0 ? (
               <Button
@@ -138,16 +182,37 @@ export const Services = () => {
               </Button>
             )}
             {studentServices
-              .filter((service) => service.status === "student")
-              .slice(studentStartIndex, studentStartIndex + 3)
+              .slice(studentStartIndex, studentStartIndex + 2)
               .map((service) => (
-                <ServicesStudentsOffer
-                  icon={faCamera}
-                  title={service.title}
-                  description={service.description}
-                />
+                <div>
+                  <ServicesStudentsOffer
+                    icon={faCamera}
+                    title={service.title}
+                    description={service.description}
+                  />
+                  <div className="services-student-update">
+                    <ServicePricingForm
+                      type={"student"}
+                      service={service}
+                      onSuccess={() => getServices()}
+                      onError={(error) => console.log(error)}
+                      visible
+                    />
+                    <DeleteButton
+                      path={`/services/${service.id}`}
+                      onSuccess={() => {
+                        getServices();
+                        setStudentStartIndex(0);
+                      }}
+                      onError={(error) => console.log(error)}
+                      visible
+                    >
+                      You are going to delete this service
+                    </DeleteButton>
+                  </div>
+                </div>
               ))}
-            {studentStartIndex + 4 > studentServices.length ? (
+            {studentStartIndex + 3 > studentServices.length ? (
               <Button
                 className="about-nofunction-button"
                 id="disabled"

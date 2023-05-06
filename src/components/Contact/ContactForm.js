@@ -1,26 +1,26 @@
 import React from 'react';
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
 import './ContactForm.css';
 
 function ContactForm() {
-  const sendEmail = (e) => {
-    e.preventDefault();
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
 
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
+  //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+  //     .then((result) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
 
-    e.target.reset();
-  };
+  //   e.target.reset();
+  // };
 
   return (
     <div className='contact-form-container'>
       <div>
         <p className="about-contact-form-title">Get in Touch</p>
-        <form className="form-query"  onSubmit={sendEmail}>
+        <form className="form-query">
           <div className="subject-query">
             <textarea
               type="text"

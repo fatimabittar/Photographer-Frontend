@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 
 export const PopupForm = ({
   formAction,
+  buttonClassName="button-danger",
   formHeader,
   onSubmit,
   visible,
@@ -24,8 +25,8 @@ export const PopupForm = ({
 
   return (
     <>
-      <button
-        className="button-edit popup-overlay"
+      <button 
+        className={buttonClassName}
         onClick={() => setIsOpen(true)}
       >
         {formAction}
@@ -36,13 +37,13 @@ export const PopupForm = ({
           <form onSubmit={handleFormSubmit} className="form-data">
             {children}
             <div className="buttons-form">
-              <button type="submit" className="button-form">
+              <button type="submit" className="button-danger">
                 Submit
               </button>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="button-form"
+                className="button-edit"
               >
                 Cancel
               </button>

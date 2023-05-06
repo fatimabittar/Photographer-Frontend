@@ -10,6 +10,8 @@
 
 .button-edit {
   fill: #ffffff;
+  font-weight: bold;
+  width: 100px;
   color: #ffffff;
   background-color: #ff0000;
   border-style: none;
@@ -17,9 +19,36 @@
   border-radius: 17px 17px 17px 17px;
   padding: 15px 30px;
   cursor: pointer;
+  text-align: center;
 }
 
 .button-edit:hover {
+  fill: #ffffff;
+  color: #ff0000;
+  background-color: #ffffff;
+  border-style: none;
+  /* border: 1px solid #ff0000; */
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
+}
+
+.button-danger{
+  font-weight: bold;
+  width: 100px;
+  fill: #ffffff;
+  color: #ff0000;
+  background-color:#ffffff ;
+  border-style: none;
+  /* border: 1px solid #ff0000; */
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button-danger:hover {
   fill: #ffffff;
   color: #ffffff;
   background-color: #cf1313;
