@@ -12,12 +12,12 @@ import ItemDetails from "./pages/ItemDetails";
 import { Contact } from "./pages/Contact";
 import About from "./components/About/About";
 import { NotFound } from "./pages/NotFound";
-import { DashboardServices } from "./pages/DashboardServices";
+import { DashboardServices } from "./Dashboard/DashboardServices";
 
 // import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login/Login";
-import Dashboard from "./Dashboard/Dashboard";
+import {HomeDashboard} from "./Dashboard/HomeDashboard";
 import Error from "./pages/Error";
 // ============================ADMIN========================
 import AdminShop from "./Dashboard/AdminShop";
@@ -28,7 +28,7 @@ import UserInfo from "./Dashboard/UserInfo";
 function App() {
   const isAdmin = localStorage.getItem("role") === "admin";
   const checkAdminAccess = (element) => {
-    return isAdmin ? element : <Navigate to="/Error" replace />;
+    return isAdmin ? element : <Error />;
   };
   console.log("IsAdmin:", isAdmin);
 
@@ -48,10 +48,7 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route path="/Error" element={<Error />} />
 
-          <Route
-            path="/dashboard/*"
-            element={checkAdminAccess(<Home />)}
-          />
+          <Route path="/dashboard/*" element={checkAdminAccess(<HomeDashboard />)} />
           <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
           <Route
             path="/adminshop/update/:itemID"
@@ -64,8 +61,8 @@ function App() {
           <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
 
           {/* Fatima */}
-          <Route exact path="/dashboard/" element={<Home />} />
-          <Route exact path="/dashboard/gallery" element={<GalleryDashboard />} />
+          {/* <Route exact path="/dashboard/" element={<Home />} /> */}
+          <Route exact path="/dashboard/gallery" element={<Gallery />} />
           <Route
             exact
             path="/dashboard/services"
@@ -73,9 +70,9 @@ function App() {
           />
           <Route exact path="/dashboard/about" element={<About />} />
           <Route exact path="/dashboard/contact" element={<Contact />} />
-          {/* <Route exact path="*" element={<NotFound />} /> */}
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </BrowserRouter>
   );

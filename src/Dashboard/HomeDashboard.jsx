@@ -6,12 +6,16 @@ import axios from "axios";
 import { API_URL } from "../constants";
 import PhotoAlbum from "react-photo-album";
 import { Link } from "react-router-dom";
-import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
-import { ImageDivider } from "../components/ImageDivider.jsx";
+import {
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
 import "../styles/Home.css";
 import AboutHeader from "../components/About/AboutHeader/AboutHeader";
+import { ImageForm } from "./DashboardCommon/ImageForm";
+import "../styles/Dashboard.css";
 
-export const Home = () => {
+export const HomeDashboard = () => {
   const [side_images, setSide_images] = useState([]);
   useEffect(() => {
     axios
@@ -31,35 +35,35 @@ export const Home = () => {
     }));
   console.log("photoAlbumImages:", photoAlbumImages);
 
-  const photoDivided =side_images
-  .filter((img) => img.page === "home" && img.section === 4)
-  .sort((a, b) => a.priority - b.priority);
+  const photoDivided = side_images
+    .filter((img) => img.page === "home" && img.section === 4)
+    .sort((a, b) => a.priority - b.priority);
   // console.log("hii", photoDivided[0]?.image);
 
   console.log("photoDivided:", photoDivided);
   return (
     <div className="home">
       <div className="home-one">
-      <AboutHeader backgroundImage={photographerBckgrnd} minHeight={'90vh'}/>
-        {/* <img
-          src={photographerBckgrnd}
-          alt="backgroundImage"
-          className="HomeBackgrnd"
-        /> */}
+        <AboutHeader backgroundImage={photographerBckgrnd} minHeight={"90vh"} />
       </div>
       <div className="home-two">
         <section className="section-1">
           {side_images
             .filter((img) => img.page === "home" && img.section === 1)
             .map((img) => (
-              <SideImage
-                key={img.id}
-                image={img.image}
-                className="section-1-img"
-                width={img.width}
-                height={img.height}
-                containerWidth="70%"
-              />
+              <>
+                <SideImage
+                  key={img.id}
+                  image={img.image}
+                  className="section-1-img img-form-edit"
+                  width={img.width}
+                  height={img.height}
+                  containerWidth="70%"
+                />
+                <div>
+                  <ImageForm imageSource={img} visible />
+                </div>
+              </>
             ))}
           <h1>To See More Images Check Our</h1>
           <Link to="./gallery" style={{ textDecoration: "none" }}>
@@ -67,19 +71,7 @@ export const Home = () => {
           </Link>
         </section>
         <section className="section-2">
-          <PhotoAlbum
-            layout="masonry"
-            photos={photoAlbumImages}
-            // renderPhoto={({ photo: { src, width, height }, index }) => (
-            //   <SideImage
-            //     src={src}
-            //     width={width}
-            //     height={height}
-            //     index={index}
-            //   />
-            // )}
-            columns={3}
-          />
+          <PhotoAlbum layout="masonry" photos={photoAlbumImages} columns={3} />
         </section>
       </div>
       <div className="home-three">
@@ -87,14 +79,19 @@ export const Home = () => {
           {side_images
             .filter((img) => img.page === "home" && img.section === 3)
             .map((img) => (
-              <SideImage
-                key={img.id}
-                image={img.image}
-                className="section-3-img"
-                width={img.width}
-                height={img.height}
-                containerWidth="60%"
-              />
+              <>
+                <SideImage
+                  key={img.id}
+                  image={img.image}
+                  className="section-3-img img-form-edit"
+                  width={img.width}
+                  height={img.height}
+                  containerWidth="60%"
+                />
+                <div>
+                  <ImageForm imageSource={img} visible />
+                </div>
+              </>
             ))}
         </section>
         <section className="home-quote">
@@ -111,18 +108,28 @@ export const Home = () => {
         </section>
       </div>
       <div className="home-four">
-        {/* <ImageDivider
-          image1={photoDivided[0]}
-          image2={photoDivided[1]?.image}
-          containerWidth="50%"
-          dividerColor="blue"
-        /> */}
-<div className="section-1">
-<ReactCompareSlider
-  itemOne={<ReactCompareSliderImage src={`data:image/jpeg;base64,${photoDivided[0]?.image}`} alt="Image one" />}
-  itemTwo={<ReactCompareSliderImage src={`data:image/jpeg;base64,${photoDivided[1]?.image}`} alt="Image two" />}
-/>
-</div>
+        <div className="section-1">
+          <ReactCompareSlider
+            itemOne={
+              <>
+                <ReactCompareSliderImage
+                  src={`data:image/jpeg;base64,${photoDivided[0]?.image}`}
+                  alt="Image one"
+                />
+              </>
+            }
+            itemTwo={
+              <ReactCompareSliderImage
+                src={`data:image/jpeg;base64,${photoDivided[1]?.image}`}
+                alt="Image two"
+              />
+            }
+          />
+          <div className="compare-slider-buttons">
+            <ImageForm imageSource={photoDivided[0]} visible/>
+            <ImageForm imageSource={photoDivided[1]} visible/>
+          </div>
+        </div>
         <section className="home-quote">
           <h1>“We Sell Lightroom Presets”</h1>
           <button
@@ -147,14 +154,19 @@ export const Home = () => {
           {side_images
             .filter((img) => img.page === "home" && img.section === 5)
             .map((img) => (
-              <SideImage
-                key={img.id}
-                image={img.image}
-                className="section-5-img"
-                width={img.width}
-                height={img.height}
-                containerWidth="65%"
-              />
+              <>
+                <SideImage
+                  key={img.id}
+                  image={img.image}
+                  className="section-5-img img-form-edit"
+                  width={img.width}
+                  height={img.height}
+                  containerWidth="65%"
+                />
+                <div>
+                  <ImageForm imageSource={img} visible />
+                </div>
+              </>
             ))}
         </section>
       </div>

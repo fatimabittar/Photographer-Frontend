@@ -86,8 +86,7 @@
 }
 
 .title-pricing-plans {
-  margin-left: 22%;
-  margin-bottom: 20px;
+  margin: auto;
 }
 
 .pricing-body h1 {
@@ -214,19 +213,23 @@
 .buttons-form {
   display: flex;
   justify-content: space-between;
+  text-align: center;
+  align-content: center;
   margin-top: 20px;
 }
 
-.button-form {
-  padding: 20px 20px;
-  background-color: red;
-  color: #fff;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
+/* .button-form {
+  fill: #ffffff;
+  width: 100px;
+  color: #ffffff;
+  background-color: #ff0000;
+  border-style: none;
+  font-size: medium;
+  border-radius: 17px 17px 17px 17px;
+  padding: 15px 30px;
   cursor: pointer;
 }
 
 .button-form:hover {
   background-color: rgb(170, 30, 30);
-}
+} */

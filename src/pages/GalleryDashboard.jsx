@@ -7,7 +7,6 @@ import {GalleryCard }from "../components/GalleryCard"
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import Options from '../components/imageList/Options';
-import { Loader } from 'rsuite';
 
 export const GalleryDashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('Architecture');

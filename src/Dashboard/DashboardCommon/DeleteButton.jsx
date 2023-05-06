@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import { API_URL } from "../constants";
+import { API_URL } from "../../constants"
 
 export const DeleteButton = ({
   path,
@@ -29,7 +29,7 @@ export const DeleteButton = ({
   return (
     <>
       <button
-        className="button-edit popup-overlay"
+        className="button-edit"
         onClick={() => setIsOpen(true)}
       >
         Delete
@@ -42,14 +42,14 @@ export const DeleteButton = ({
             <button
               type="button"
               onClick={handleFormSubmit}
-              className="button-form"
+              className="button-edit"
             >
               Delete
             </button>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="button-form"
+              className="button-edit"
             >
               Cancel
             </button>
