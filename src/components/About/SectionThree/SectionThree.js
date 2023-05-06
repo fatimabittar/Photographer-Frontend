@@ -31,7 +31,8 @@ function SectionThree() {
         <EvenItem
           title={object.title}
           description={object.description}
-          key={object._id}
+          key={object.id}
+          image={object.image}
         />
       );
     } else if (index % 2 === 0) {
@@ -39,7 +40,8 @@ function SectionThree() {
         <OddItem
           title={object.title}
           description={object.description}
-          key={object._id}
+          key={object.id}
+          image={object.image}
         />
       );
     }
