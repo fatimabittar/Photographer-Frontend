@@ -126,8 +126,9 @@ export const HomeDashboard = () => {
             }
           />
           <div className="compare-slider-buttons">
-            <ImageForm imageSource={photoDivided[0]} visible/>
-            <ImageForm imageSource={photoDivided[1]} visible/>
+            {console.log(photoDivided[0])}
+            <ImageForm imageSource={photoDivided[0]} visible />
+            <ImageForm imageSource={photoDivided[1]} visible />
           </div>
         </div>
         <section className="home-quote">
