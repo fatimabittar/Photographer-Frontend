@@ -50,9 +50,9 @@ export const Header = () => {
           Contact
         </NavLink>
         {/* Logout Icon */}
-        {/* <button onClick={handleLogout} className="logout-btn">
+         <button onClick={handleLogout} className="logout-btn">
           <LogoutOutlinedIcon />
-        </button> */}
+        </button> 
       </div>
     </div>
   );

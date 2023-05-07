@@ -2,14 +2,15 @@ import "./App.css";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { Header } from "./components/Header";
-// import { Footer } from "./components/Footer";
+import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { GalleryDashboard } from "./pages/GalleryDashboard";
 import { Gallery} from "./pages/Gallery";
 import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
-import { Contact } from "./components/Contact/Contact";
+import  Contact  from "./components/ContactForm/ContactForm";
+
 import About from "./components/About/About";
 import { NotFound } from "./pages/NotFound";
 import { DashboardServices } from "./Dashboard/DashboardServices";
@@ -73,10 +74,9 @@ function App() {
         <Route exact path="/dashboard/contact" element={<Contact />} />
         <Route exact path="*" element={<NotFound />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
 
     </BrowserRouter>
-
 
 
 
