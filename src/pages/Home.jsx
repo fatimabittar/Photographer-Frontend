@@ -6,10 +6,14 @@ import axios from "axios";
 import { API_URL } from "../constants";
 import PhotoAlbum from "react-photo-album";
 import { Link } from "react-router-dom";
-import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import {
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
 import { ImageDivider } from "../components/ImageDivider.jsx";
 import "../styles/Home.css";
 import AboutHeader from "../components/About/AboutHeader/AboutHeader";
+import { PhotosGrid } from "../components/PhotosGrid";
 
 export const Home = () => {
   const [side_images, setSide_images] = useState([]);
@@ -24,23 +28,26 @@ export const Home = () => {
   const photoAlbumImages = side_images
     .filter((img) => img.page === "home" && img.section === 2)
     .sort((a, b) => a.priority - b.priority)
-    .map((img) => ({
-      src: `data:image/jpeg;base64,${img.image}`,
-      width: img.width,
-      height: img.height,
-    }));
+    .map(({ id, image, x, y, width, height }, index) => ({
+      i: id,
+      x,
+      y,
+      w: width,
+      h: height,
+      image,
+    }))
   console.log("photoAlbumImages:", photoAlbumImages);
 
-  const photoDivided =side_images
-  .filter((img) => img.page === "home" && img.section === 4)
-  .sort((a, b) => a.priority - b.priority);
+  const photoDivided = side_images
+    .filter((img) => img.page === "home" && img.section === 4)
+    .sort((a, b) => a.priority - b.priority);
   // console.log("hii", photoDivided[0]?.image);
 
   console.log("photoDivided:", photoDivided);
   return (
     <div className="home">
       <div className="home-one">
-      <AboutHeader backgroundImage={photographerBckgrnd} minHeight={'90vh'}/>
+        <AboutHeader backgroundImage={photographerBckgrnd} minHeight={"90vh"} />
         {/* <img
           src={photographerBckgrnd}
           alt="backgroundImage"
@@ -66,21 +73,24 @@ export const Home = () => {
             <h1>Gallery</h1>
           </Link>
         </section>
-        <section className="section-2">
+        {/* <section className="section-2">
           <PhotoAlbum
             layout="masonry"
             photos={photoAlbumImages}
-            // renderPhoto={({ photo: { src, width, height }, index }) => (
-            //   <SideImage
-            //     src={src}
-            //     width={width}
-            //     height={height}
-            //     index={index}
-            //   />
-            // )}
             columns={3}
           />
-        </section>
+        </section> */}
+        {photoAlbumImages.length && (
+          <section className="section-2">
+            <PhotosGrid
+            key='photoGrid'
+              // layout="masonry"
+              // photos={[photoAlbumImages[1], photoAlbumImages[0]]}
+              photos={photoAlbumImages}
+              // columns={3}
+            />
+          </section>
+        )}
       </div>
       <div className="home-three">
         <section className="section-3">
@@ -117,12 +127,22 @@ export const Home = () => {
           containerWidth="50%"
           dividerColor="blue"
         /> */}
-<div className="section-1">
-<ReactCompareSlider
-  itemOne={<ReactCompareSliderImage src={`data:image/jpeg;base64,${photoDivided[0]?.image}`} alt="Image one" />}
-  itemTwo={<ReactCompareSliderImage src={`data:image/jpeg;base64,${photoDivided[1]?.image}`} alt="Image two" />}
-/>
-</div>
+        <div className="section-1">
+          <ReactCompareSlider
+            itemOne={
+              <ReactCompareSliderImage
+                src={`data:image/jpeg;base64,${photoDivided[0]?.image}`}
+                alt="Image one"
+              />
+            }
+            itemTwo={
+              <ReactCompareSliderImage
+                src={`data:image/jpeg;base64,${photoDivided[1]?.image}`}
+                alt="Image two"
+              />
+            }
+          />
+        </div>
         <section className="home-quote">
           <h1>“We Sell Lightroom Presets”</h1>
           <button

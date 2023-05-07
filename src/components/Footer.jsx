@@ -9,7 +9,7 @@ import { TwitterIcon } from "./TwitterIcon";
 
 export const Footer = () => {
   return (
-    <div className="footer" style={{height: 200 }}
+    <div className="footer" style={{height: 70 }}
     >
       <p>
         Copyright &copy; 2023 by Ahmad, Sarah, Fatima, Nour. All Rights Reserved.
