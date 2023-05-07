@@ -3,6 +3,7 @@ import logo from "../images/logo.png";
 import { NavLink } from "react-router-dom";
 import "../styles/Header.css";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -49,10 +50,13 @@ export const Header = () => {
         <NavLink to={`/contact`} style={navigationStyle}>
           Contact
         </NavLink>
-        {/* Logout Icon */}
-        {/* <button onClick={handleLogout} className="logout-btn">
-          <LogoutOutlinedIcon />
-        </button> */}
+        <div>
+          {
+            <button onClick={handleLogout} className="logout-btn">
+              <LogoutOutlinedIcon />
+            </button>
+          }
+        </div>
       </div>
     </div>
   );

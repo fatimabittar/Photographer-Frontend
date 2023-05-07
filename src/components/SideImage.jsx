@@ -17,7 +17,7 @@ export const SideImage = ({
       className={className}
       style={{
         width: `calc(${containerWidth} - 0px)`,
-        aspectRatio: `${width}/${height}`,
+        aspectRatio: width && height ? `${width}/${height}` : 'auto',
         height: "auto",
       }}
     />

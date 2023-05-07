@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { GalleryDashboard } from "./pages/GalleryDashboard";
-import { Gallery} from "./pages/Gallery";
+import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
@@ -17,7 +17,7 @@ import { DashboardServices } from "./Dashboard/DashboardServices";
 // import AboutHeader from "./components/About/AboutHeader/AboutHeader";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login/Login";
-import {HomeDashboard} from "./Dashboard/HomeDashboard";
+import { HomeDashboard } from "./Dashboard/HomeDashboard";
 import Error from "./pages/Error";
 // ============================ADMIN========================
 import AdminShop from "./Dashboard/AdminShop";
@@ -48,7 +48,10 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route path="/Error" element={<Error />} />
 
-          <Route path="/dashboard/*" element={checkAdminAccess(<HomeDashboard />)} />
+          <Route
+            path="/dashboard/*"
+            element={checkAdminAccess(<HomeDashboard />)}
+          />
           <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
           <Route
             path="/adminshop/update/:itemID"
@@ -62,7 +65,7 @@ function App() {
 
           {/* Fatima */}
           {/* <Route exact path="/dashboard/" element={<Home />} /> */}
-          <Route exact path="/dashboard/gallery" element={<Gallery />} />
+          <Route exact path="/dashboard/gallery" element={checkAdminAccess(<Gallery />)} />
           <Route
             exact
             path="/dashboard/services"
