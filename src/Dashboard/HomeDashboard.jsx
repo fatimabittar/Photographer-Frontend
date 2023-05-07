@@ -125,6 +125,21 @@ export const HomeDashboard = () => {
               />
             }
           />
+          {photoDivided && (
+            <div className="compare-slider-buttons">
+              {console.log(photoDivided[0])}
+              <ImageForm
+                imageSource={photoDivided[0]}
+                key={photoDivided[0]?.id}
+                visible
+              />
+              <ImageForm
+                imageSource={photoDivided[1]}
+                key={photoDivided[1]?.id}
+                visible
+              />
+            </div>
+          )}
         </div>
         <section className="home-quote">
           <h1>“We Sell Lightroom Presets”</h1>

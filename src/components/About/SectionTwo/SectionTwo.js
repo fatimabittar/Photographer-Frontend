@@ -10,7 +10,7 @@ const url = "http://localhost:5000/api/about/";
 function SectionTwo() {
   const [info, setInfo] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
-  const [numItems, setNumItems] = useState(3);
+  const numItems = 3;
 
   useEffect(() => {
     getAllInfo();
@@ -37,22 +37,20 @@ function SectionTwo() {
    //info.length = mapping over all the items in the about collection including the ones of section one and three
    const prevButtonDisabled = startIndex === 0;
    const filteredCards = info.filter((object) => object.section === "2");
-   const nextButtonDisabled = startIndex + 3 === filteredCards.length ;
+   const nextButtonDisabled = startIndex + numItems === filteredCards.length ;
    console.log("start:"+ startIndex)
    console.log("filtered:"+ filteredCards.length)
    console.log("info:" +  info.length)
    console.log("items:" + numItems)
    const cards = filteredCards.slice(startIndex, startIndex + numItems).map((object) => {
-    // if (object.section === "2") {
       return (
         <CardSectionTwo
           title={object.title}
           description={object.description}
-          key={object._id}
+          key={object.id}
+          image={object.image}
         />
       );
-    // }
-    return null;
   });
 
   return (

@@ -19,7 +19,7 @@ export const ServicePricingForm = ({
     price,
     image: null,
   });
-
+  console.log("hizo", title);
   const handleFormSubmit = async () => {
     const formData = new FormData();
     formData.append("title", data.title);

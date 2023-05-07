@@ -23,15 +23,15 @@ function SectionOne() {
       };
       const filteredCards = info.filter((object) => object.section === "1");
       const cards = filteredCards.map((object) => {
+        console.log(object);
         return (
             <CardSectionOne
               title={object.title}
               description={object.description}
-              key={object._id}
-              image={object.image_url}
+              key={object.id}
+              image={object.image}
             />
           );
-          return null;
         });
   return (
     <div>

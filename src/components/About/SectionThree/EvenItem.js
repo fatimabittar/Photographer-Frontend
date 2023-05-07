@@ -1,6 +1,5 @@
 import React from 'react'
 import './SectionThree.css'
-import dots from '../SectionOne/dotsfinal.jpg'
 
 function EvenItem(props) {
     return (
@@ -13,7 +12,12 @@ function EvenItem(props) {
      
       <div className='about--section-three-even-column-two'>
         <div className='dots-background-three-even'>
-        <img src={dots} alt="image" className='about-section-three-even-image'/>
+        <img
+        src={`data:image/jpeg;base64,${props.image}`}
+        alt="section-three-background"
+        className='about-section-three-even-image'
+      />
+        {/* <img src={dots} alt="image" className='about-section-three-even-image'/> */}
         <div className='transparent-dots-three-even'></div>
         </div>
       </div>
