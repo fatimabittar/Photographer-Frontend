@@ -55,6 +55,18 @@ function Checkout() {
       const itemPrice = data.data.price;
       const total = itemPrice * formData.Q;
   
+      if (formData.Q > data.data.stock) {
+        // Show an alert message if the entered quantity is not available in stock
+        Swal.fire({
+          title: "Error",
+          text: "Not enough quantity available in stock!, Try less quantity ",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+  
       setFormData((prevState) => ({
         ...prevState,
         total,
@@ -73,7 +85,6 @@ function Checkout() {
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
-      
       });
     } catch (error) {
       console.log(error);
