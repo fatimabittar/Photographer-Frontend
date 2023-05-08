@@ -18,6 +18,7 @@ export const ImageForm = ({
     section,
     page,
   });
+  
 
   console.log(data);
   const handleFormSubmit = async () => {
@@ -63,28 +64,6 @@ export const ImageForm = ({
         image={data.image}
         onChange={(image) => setData({ ...data, image })}
       />
-      {/* <div>
-        <label htmlFor="width">width:</label>
-        <input
-          type="text"
-          id="width"
-          name="width"
-          value={data.width}
-          onChange={(event) =>
-            setData({ ...data, width: event?.target?.value })
-          }
-        />
-        <label htmlFor="width">height:</label>
-        <input
-          type="text"
-          id="height"
-          name="height"
-          value={data.height}
-          onChange={(event) =>
-            setData({ ...data, height: event?.target?.value })
-          }
-        />
-      </div> */}
     </PopupForm>
   );
 };

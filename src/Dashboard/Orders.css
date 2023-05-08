@@ -1,6 +1,10 @@
-/* body {
-  background: #f6eded;
-} */
+body {
+  background-image: radial-gradient(
+    rgb(250, 250, 250),
+    rgb(200, 200, 200),
+    rgb(130, 130, 130)
+  );
+}
 .container {
   max-width: 85%;
   margin: auto;
@@ -95,18 +99,14 @@ td {
 }
 
 .action-button-delete {
-  background-color: rgb(153, 13, 13);
+  background-color: red;
   color: white;
-  padding: 10px 10px;
-  border-radius: 13px;
 }
 
 .action-button-update {
-  background-color: red;
+  background-color: rgb(124, 124, 237);
   color: white;
   margin-bottom: 5px;
-  padding: 10px 10px;
-  border-radius: 13px;
 }
 
 .btn-add {
@@ -114,8 +114,9 @@ td {
   padding: 7px;
   left: 0;
   margin: 20px;
+  margin-left: 138px;
   text-decoration: none;
-  background-color: rgb(106, 221, 106);
+  background-color: #850000;
   color: white;
   border: 1px solid white;
 }

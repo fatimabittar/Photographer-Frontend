@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 
 export const PopupForm = ({
   formAction,
-  buttonClassName="button-danger",
+  buttonClassName = "button-danger",
   formHeader,
   onSubmit,
   visible,
@@ -25,10 +25,7 @@ export const PopupForm = ({
 
   return (
     <>
-      <button 
-        className={buttonClassName}
-        onClick={() => setIsOpen(true)}
-      >
+      <button className={buttonClassName} onClick={() => setIsOpen(true)}>
         {formAction}
       </button>
       <Popup open={isOpen} onClose={() => setIsOpen(false)} modal>

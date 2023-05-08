@@ -14,31 +14,37 @@ import "../styles/Home.css";
 import AboutHeader from "../components/About/AboutHeader/AboutHeader";
 import { ImageForm } from "./DashboardCommon/ImageForm";
 import "../styles/Dashboard.css";
+import { PhotosGrid } from "../components/PhotosGrid";
+import { GridPopupForm } from "../components/GridPopupForm";
 
 export const HomeDashboard = () => {
   const [side_images, setSide_images] = useState([]);
-  useEffect(() => {
+
+  const getImages = () => {
     axios
       .get(`${API_URL}/images`)
       .then((res) => setSide_images(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  useEffect(() => getImages, []);
   console.log("side_images:", side_images);
 
   const photoAlbumImages = side_images
     .filter((img) => img.page === "home" && img.section === 2)
     .sort((a, b) => a.priority - b.priority)
-    .map((img) => ({
-      src: `data:image/jpeg;base64,${img.image}`,
-      width: img.width,
-      height: img.height,
+    .map(({ id, image, x, y, width, height }, index) => ({
+      i: id,
+      x,
+      y,
+      w: width,
+      h: height,
+      image,
     }));
   console.log("photoAlbumImages:", photoAlbumImages);
-
   const photoDivided = side_images
     .filter((img) => img.page === "home" && img.section === 4)
     .sort((a, b) => a.priority - b.priority);
-  // console.log("hii", photoDivided[0]?.image);
 
   console.log("photoDivided:", photoDivided);
   return (
@@ -70,9 +76,20 @@ export const HomeDashboard = () => {
             <h1>Gallery</h1>
           </Link>
         </section>
-        <section className="section-2">
-          <PhotoAlbum layout="masonry" photos={photoAlbumImages} columns={3} />
-        </section>
+        {photoAlbumImages.length && (
+          <section className="section-2">
+            <GridPopupForm
+              photos={photoAlbumImages}
+              onSuccess={getImages}
+              visible
+            />
+            <PhotosGrid
+              key="photoGrid"
+              photos={photoAlbumImages}
+              itemEditable
+            />
+          </section>
+        )}
       </div>
       <div className="home-three">
         <section className="section-3">

@@ -4,11 +4,13 @@
   align-items: center;
   padding: 20px;
 }
-.container{
-  background-color: rgb(233, 222, 222);
-
+.container {
+  background-image: radial-gradient(
+    rgb(250, 250, 250),
+    rgb(200, 200, 200),
+    rgb(130, 130, 130)
+  );
 }
-
 
 .row {
   display: flex;
@@ -75,6 +77,5 @@
   .product-stock {
     margin-top: 0px;
     float: right;
-
   }
 }

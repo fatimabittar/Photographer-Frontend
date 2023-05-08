@@ -25,7 +25,9 @@ const SignIn = ({ onSignupClick }) => {
   }, []);
 
   const fetchLogin = async () => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
     try {
       const res = await axios.post("http://localhost:5000/api/users/login", {
         email,
@@ -40,9 +42,9 @@ const SignIn = ({ onSignupClick }) => {
 
       if (res.data.role === "admin") {
         console.log(res);
-        navigate("/dashboard");
+        navigate("/dashboard", { replace: true });
       } else {
-        navigate("/shop");
+        navigate("/");
       }
     } catch (err) {
       if (!err?.response) {
@@ -102,30 +104,3 @@ const SignIn = ({ onSignupClick }) => {
 };
 
 export default SignIn;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,26 +1,40 @@
-import React from 'react';
-// import emailjs from 'emailjs-com';
-import './ContactForm.css';
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import "./ContactForm.css";
 
 function ContactForm() {
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
+  const form = useRef();
 
-  //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-  //     .then((result) => {
-  //       console.log(result.text);
-  //     }, (error) => {
-  //       console.log(error.text);
-  //     });
+  const resetForm = () => {
+    form.current.reset();
+  };
 
-  //   e.target.reset();
-  // };
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_p9vsaym",
+        "template_k8cscfj",
+        form.current,
+        "uI4RZWLdhav0v9t1W"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          resetForm();
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
-    <div className='contact-form-container'>
+    <div className="contact-form-container">
       <div>
         <p className="about-contact-form-title">Get in Touch</p>
-        <form className="form-query">
+        <form ref={form} onSubmit={sendEmail} className="form-query">
           <div className="subject-query">
             <textarea
               type="text"
@@ -45,7 +59,9 @@ function ContactForm() {
               placeholder="Your Message"
             />
           </div>
-          <button type="submit" className='button-contact-form'>Send Message</button>
+          <button type="submit" className="button-contact-form">
+            Send Message
+          </button>
         </form>
       </div>
     </div>
@@ -53,4 +69,3 @@ function ContactForm() {
 }
 
 export default ContactForm;
-

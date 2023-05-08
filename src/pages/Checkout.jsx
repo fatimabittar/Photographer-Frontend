@@ -28,7 +28,7 @@ function Checkout() {
     const calculateTotal = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/Items/${formData.ItemId}`,
+          `http://localhost:5000/api/Items/${formData.ItemId}`
         );
         const itemPrice = data.data.price;
         const total = itemPrice * formData.Q;
@@ -45,41 +45,54 @@ function Checkout() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       // fetch the item from the database
       const { data } = await axios.get(
-        `http://localhost:5000/api/Items/${formData.ItemId}`,
+        `http://localhost:5000/api/Items/${formData.ItemId}`
       );
-  
+
       const itemPrice = data.data.price;
       const total = itemPrice * formData.Q;
-  
+
+      if (formData.Q > data.data.stock) {
+        // Show an alert message if the entered quantity is not available in stock
+        Swal.fire({
+          title: "Error",
+          text: "Not enough quantity available in stock!, Try less quantity ",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+
       setFormData((prevState) => ({
         ...prevState,
         total,
       }));
-  
+
       console.log("Submitting form data:", formData);
-  
+
       // send the form data to the server
-      const response = await axios.post("http://localhost:5000/api/Orders/", formData);
-  
+      const response = await axios.post(
+        "http://localhost:5000/api/Orders/",
+        formData
+      );
+
       console.log("Server response:", response.data);
-  
+
       // show success message
       Swal.fire({
         title: "Order placed successfully",
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
-      
       });
     } catch (error) {
       console.log(error);
     }
   };
-  
 
   const handleChange = (event) => {
     setFormData((prevState) => ({

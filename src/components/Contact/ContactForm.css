@@ -62,12 +62,13 @@
   flex-direction: column;
 }
 
-form {
+/* form {
   display: flex;
   gap: 30px;
-}
+} */
 
 .contact_form_con {
+  
   background-color: black;
   height: 60vh;
   width: 20vw;
@@ -78,6 +79,7 @@ form {
 } */
 
 .button-contact-form{
+  margin-top: 10px;
   height: 3rem;
   width: rem;
   display: flex;

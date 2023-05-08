@@ -24,6 +24,7 @@ import AdminShop from "./Dashboard/AdminShop";
 import UpdateItem from "./Dashboard/UpdateItem";
 import AddItem from "./Dashboard/AddItem";
 import UserInfo from "./Dashboard/UserInfo";
+import { Orders } from "./Dashboard/Orders";
 
 function App() {
   const isAdmin = localStorage.getItem("role") === "admin";
@@ -52,7 +53,7 @@ function App() {
             path="/dashboard/*"
             element={checkAdminAccess(<HomeDashboard />)}
           />
-          <Route path="/adminshop" element={checkAdminAccess(<AdminShop />)} />
+          <Route path="/dashboard/shop" element={checkAdminAccess(<AdminShop />)} />
           <Route
             path="/adminshop/update/:itemID"
             element={checkAdminAccess(<UpdateItem />)}
@@ -61,7 +62,9 @@ function App() {
             path="/adminshop/add"
             element={checkAdminAccess(<AddItem />)}
           />
-          <Route path="/userinfo" element={checkAdminAccess(<UserInfo />)} />
+          <Route path="/dashboard/userinfo" element={checkAdminAccess(<UserInfo />)} />
+          <Route path="/dashboard/orders" element={checkAdminAccess(<Orders />)} />
+          
 
           {/* Fatima */}
           {/* <Route exact path="/dashboard/" element={<Home />} /> */}

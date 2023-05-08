@@ -3,64 +3,37 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { SideImage } from "./SideImage";
+import { ImageForm } from "../Dashboard/DashboardCommon/ImageForm";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-export const PhotosGrid = ({ photos }) => {
+export const PhotosGrid = ({ photos, itemEditable, onEdit }) => {
   const [layout, setLayouts] = useState(null);
-  const [widgetArray, setWidgetArray] = useState(
-    photos
-  );
+  const [gridItems, setGridItems] = useState(photos);
 
   const handleModify = (newLayout, layout) => {
-    // const tempArray = widgetArray;
     setLayouts(newLayout);
-    // layouts?.map((position) => {
-    //   tempArray[Number(position.i)].x = position.x;
-    //   tempArray[Number(position.i)].y = position.y;
-    //   tempArray[Number(position.i)].width = position.w;
-    //   tempArray[Number(position.i)].height = position.h;
-    // });
-    setWidgetArray(
-      widgetArray.map((photo) => {
-        const photoProps = newLayout.find((item) => item.i === photo.i) || photo;
-        return { ...photoProps, image: photo.image };
-      })
-    );
+    const items = gridItems.map((photo) => {
+      const photoProps = newLayout.find((item) => item.i === photo.i) || photo;
+      return { ...photoProps, image: photo.image };
+    });
+    setGridItems(items);
+    onEdit?.(items);
   };
 
   useEffect(() => {
     setLayouts(photos);
   }, [photos]);
 
-console.log(widgetArray);
-console.log(layout);
-  const handleAdd = () => {
-    // setWidgetArray([
-    //   ...widgetArray,
-    //   { i: "widget" + (widgetArray.length + 1), x: 0, y: 0, w: 2, h: 2 },
-    // ]);
-  };
-
-  const handleDelete = (key) => {
-    // const tempArray = widgetArray.slice();
-    // const index = tempArray.indexOf(tempArray.find((data) => data.i === key));
-    // tempArray.splice(index, 1);
-    // setWidgetArray(tempArray);
-  };
-
   return (
     <div>
-      <button onClick={() => handleAdd()}>Add Widget</button>
-
       <ResponsiveReactGridLayout
         onLayoutChange={handleModify}
         verticalCompact={true}
-        // layout={layouts}
         layouts={{ lg: layout }}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        preventCollision={true}
-        cols={{ lg: 8, md: 8, sm: 3, xs: 2, xxs: 2 }}
+        preventCollision={false}
+        cols={{ lg: 8, md: 8, sm: 3, xs: 2, xxs: 1 }}
         // autoSize={true}
         // margin={{
         //   lg: [20, 20],
@@ -69,38 +42,37 @@ console.log(layout);
         //   xs: [20, 20],
         //   xxs: [20, 20],
         // }}
-        // cols={3} 
-        // rowHeight={1000} width={800}
-        isResizable={true}
-        isDraggable={true}
+        // cols={3}
+        width={800}
+        // isResizable={onEdit ? true : false}
+        isDraggable={onEdit ? true : false}
       >
-        {widgetArray?.map((widget, index) => {
+        {gridItems?.map((item) => {
           return (
             <div
               className="reactGridItem"
-              key={widget.i}
+              key={item.i}
               data-grid={{
-                x: widget?.x,
-                y: widget?.y,
-                w: widget?.w,
-                h: widget?.h,
-                i: widget.i,
+                x: item?.x,
+                y: item?.y,
+                w: item?.w,
+                h: item?.h,
+                i: item.i,
                 minW: 2,
                 maxW: Infinity,
                 minH: 2,
                 maxH: Infinity,
-                isDraggable: true,
-                isResizable: true,
+                isDraggable: onEdit ? true : false,
+                // isResizable: onEdit ? true : false,
               }}
             >
-              {/* <button
-                className="deleteButton"
-                onClick={() => handleDelete(widget.i)}
-              >
-                x
-              </button> */}
               <div>
-                <SideImage key={widget.id} image={widget.image} />
+                <SideImage key={item.id} image={item.image} />
+                {itemEditable && (
+                  <div style={{ position: "fixed", top: 0, left: 0 }}>
+                    <ImageForm visible imageSource={{ id: item.i }} />
+                  </div>
+                )}
                 {/* <img
                   src={`data:image/jpeg;base64,${widget.image}`}
                   alt="section-one-background"
