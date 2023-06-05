@@ -25,7 +25,7 @@ const ItemDetail = () => {
   const getById = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/Items/${itemID}`,
+        `https://ecomback-xtaj.onrender.com/api/Items/${itemID}`,
       );
       setItem(data.data);
       console.log(data.data);

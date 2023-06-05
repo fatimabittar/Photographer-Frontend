@@ -19,7 +19,7 @@ export const Home = () => {
   const [side_images, setSide_images] = useState([]);
   useEffect(() => {
     axios
-      .get(`${API_URL}/images`)
+      .get('https://ecomback-xtaj.onrender.com/api/images')
       .then((res) => setSide_images(res.data))
       .catch((err) => console.log(err));
   }, []);

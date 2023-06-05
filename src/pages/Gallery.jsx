@@ -15,7 +15,7 @@ export const Gallery = () => {
  
   useEffect(() => {
      axios({
-      url:'http://localhost:5000/api/gallery/get', 
+      url:'https://ecomback-xtaj.onrender.com/api/gallery/get', 
       method: 'GET',
       headers: {
         'Content-Type': 'multipart/form-data',

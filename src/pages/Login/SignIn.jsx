@@ -27,7 +27,7 @@ const SignIn = ({ onSignupClick }) => {
   const fetchLogin = async () => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
     try {
-      const res = await axios.post("http://localhost:5000/api/users/login", {
+      const res = await axios.post("https://ecomback-xtaj.onrender.com/api/users/login", {
         email,
         password,
       });

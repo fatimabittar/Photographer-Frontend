@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-const url = "http://localhost:5000/api/contact";
+const url = "https://ecomback-xtaj.onrender.com/api/contact";
 
 
 function Nodemailer() {

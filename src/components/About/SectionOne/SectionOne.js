@@ -3,7 +3,7 @@ import CardSectionOne from './CardSectionOne'
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const url = "http://localhost:5000/api/about/";
+const url = "https://ecomback-xtaj.onrender.com/api/about/";
 
 
 function SectionOne() {
@@ -41,7 +41,7 @@ function SectionOne() {
 }
 
 export default SectionOne
-// const url = "http://localhost:5000/api/about/";
+// const url = "https://ecomback-xtaj.onrender.com/api/about/";
 
 
 // function SectionOne() {

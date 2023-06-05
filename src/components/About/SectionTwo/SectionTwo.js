@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
 
-const url = "http://localhost:5000/api/about/";
+const url = "https://ecomback-xtaj.onrender.com/api/about/";
 
 function SectionTwo() {
   const [info, setInfo] = useState([]);

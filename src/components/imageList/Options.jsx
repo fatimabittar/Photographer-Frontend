@@ -12,7 +12,7 @@ export default function Options(props) {
   const open = Boolean(anchorEl);
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/gallery/delete/${props.id}`);
+      const response = await axios.delete(`https://ecomback-xtaj.onrender.com/api/gallery/delete/${props.id}`);
       console.log(response)
     } catch (error) {
       // handle error

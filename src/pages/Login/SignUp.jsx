@@ -19,7 +19,7 @@ const SignUp = ({ onBackToLoginClick, setIsLogin }) => {
 
   const fetchRegister = async () => {
     try {
-      await axios.post("http://localhost:5000/api/users/register", {
+      await axios.post("https://ecomback-xtaj.onrender.com/api/users/register", {
         username,
         email,
         password,

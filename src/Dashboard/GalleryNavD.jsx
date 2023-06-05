@@ -21,7 +21,7 @@ const handleSubmit = async(event) => {
   formData.append('file', image);
   console.log(formData)
   try {
-    const response = await axios('http://localhost:5000/api/gallery/photo/create', {
+    const response = await axios('https://ecomback-xtaj.onrender.com/api/gallery/photo/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',

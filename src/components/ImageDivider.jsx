@@ -17,7 +17,7 @@
 //         className="image-container"
 //         style={{
 //           width: `${percentage}%`,
-//           backgroundImage: `url(http://localhost:5000/${img1})`,
+//           backgroundImage: `url(https://ecomback-xtaj.onrender.com/${img1})`,
 //         }}
 //       ></div> */}
 //       {/* <SideImage
@@ -42,7 +42,7 @@
 //         className="image-container"
 //         style={{
 //           width: `${100 - percentage}%`,
-//           backgroundImage: `url(http://localhost:5000/${img2})`,
+//           backgroundImage: `url(https://ecomback-xtaj.onrender.com/${img2})`,
 //         }}
 //       ></div> */}
 //       {/* <div

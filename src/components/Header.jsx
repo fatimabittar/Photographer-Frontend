@@ -17,7 +17,7 @@ export const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:5000/api/users/logout");
+      await axios.post("https://ecomback-xtaj.onrender.com/api/users/logout");
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       navigate("/login");

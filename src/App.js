@@ -9,7 +9,7 @@ import { Gallery } from "./pages/Gallery";
 import { Services } from "./pages/Services";
 import Shop from "./pages/Shop";
 import ItemDetails from "./pages/ItemDetails";
-import Contact from "./components/ContactForm/ContactForm";
+import Contact from './components/Contact/ContactForm'
 
 import About from "./components/About/About";
 import { NotFound } from "./pages/NotFound";
