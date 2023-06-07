@@ -8,8 +8,8 @@ const SignIn = ({ onSignupClick }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState("");
-
   const errRef = useRef();
+  
   // const emailRef = useRef();
 
   const navigate = useNavigate();
