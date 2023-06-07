@@ -19,39 +19,36 @@ export const ImageForm = ({
     page,
   });
 
-  console.log(data)
+  console.log(data);
   const handleFormSubmit = async () => {
-    if (data && width && height) {
-      const formData = new FormData();
-      formData.append("height", data.height);
-      formData.append("title", data.title);
-      formData.append("width", data.width);
-      formData.append("section", data.section);
-      formData.append("page", data.page);
-      if (data.image) formData.append("image_url", data.image);
-      if (id) {
-        await axios({
-          url: `${API_URL}/images/${id}`,
-          data: formData,
-          method: "PUT",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-          .then(onSuccess)
-          .catch(onError);
-      } else {
-        await axios({
-          url: `${API_URL}/images`,
-          data: formData,
-          method: "POST",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-          .then(onSuccess)
-          .catch(onError);
-      }
+    const formData = new FormData();
+    if (data.height) formData.append("height", data.height);
+    if (data.width) formData.append("width", data.width);
+    if (data.section) formData.append("section", data.section);
+    if (data.page) formData.append("page", data.page);
+    if (data.image) formData.append("image_url", data.image);
+    if (id) {
+      await axios({
+        url: `${API_URL}/images/${id}`,
+        data: formData,
+        method: "PUT",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then(onSuccess)
+        .catch(onError);
+    } else {
+      await axios({
+        url: `${API_URL}/images`,
+        data: formData,
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then(onSuccess)
+        .catch(onError);
     }
   };
 
@@ -64,7 +61,7 @@ export const ImageForm = ({
     >
       <UploadAndViewImage
         image={data.image}
-        onChange={(image) => setData(...data, image)}
+        onChange={(image) => setData({ ...data, image })}
       />
       {/* <div>
         <label htmlFor="width">width:</label>

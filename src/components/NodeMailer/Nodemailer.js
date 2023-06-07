@@ -6,7 +6,7 @@ import axios from 'axios';
 const url = "http://localhost:5000/api/contact";
 
 
-function ContactForm() {
+function Nodemailer() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -59,4 +59,4 @@ function ContactForm() {
 }
 
 
-export default  ContactForm
+export default  Nodemailer

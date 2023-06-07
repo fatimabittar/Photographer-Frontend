@@ -92,6 +92,7 @@ export const DashboardServices = () => {
                 />
                 <div className="services-student-update">
                   <ServicePricingForm
+                    key={service.id}
                     type="customer"
                     service={service}
                     onSuccess={() => getServices()}
